@@ -1,0 +1,579 @@
+{
+  "network": {
+    "bnb": "BSC",
+    "eth": "Ethereum",
+    "trx": "TRON",
+    "base": "Base",
+    "ton": "TON"
+  },
+  "shared": {
+    "autoReplenishment": "Automatic card replenishment",
+    "autoReplenishmentDesc": "When the auto-replenishment option is enabled, all funds from the wallet will be automatically sent to your card balance.",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "innerTransfer": "Internal transfer - no fees applied",
+    "successPromo": "Promo code entered successfully",
+    "cardFree": "Get it free",
+    "actions": {
+      "back": "Back",
+      "next": "Next",
+      "copy": "Copy",
+      "cancel": "Cancel",
+      "close": "Close",
+      "share": "Share",
+      "apply": "Apply",
+      "in": "Deposit",
+      "out": "Withdraw",
+      "noTransactions": "No transactions"
+    },
+    "labels": {
+      "minAmount": "Minimum 20$",
+      "minAmountWithAmount": "Minimum {amount}$",
+      "maxAmount": "Maximum {balance}$",
+      "networkAddress": "Invalid address",
+      "invalidPhone": "The telephone number provided is incorrect.",
+      "photo": "The file size must not exceed 10MB",
+      "age": "Minimum age is 18 years",
+      "documentDate": "Document expire date must be greater than current date",
+      "dateFormat": "Invalid date format",
+      "error": "Error",
+      "protonServiceNotSupported": "Proton service is not supported by the provider",
+      "minLength": "This field is required",
+      "minLengthPassword": "Password must be at least 8 characters long",
+      "checkPassword": "The password does not match the condition",
+      "confirmPassword": "Passwords don't match",
+      "unknownError": "Unknown error",
+      "required": "This field is required",
+      "onlyAlpha": "Please use Latin characters only",
+      "success": "Success",
+      "copied": "Copied",
+      "invalidEmail": "Invalid email format",
+      "invalidDate": "Invalid date format",
+      "fileSize": "Only files and images smaller than 10 MB are accepted",
+      "emailNotEmpty": "This email address is already registered"
+    },
+    "enums": {
+      "operationType": {
+        "freeze": "Freeze",
+        "unfreeze": "Unfreeze"
+      },
+      "operationStatus": {
+        "pending": "Pending",
+        "completed": "Completed",
+        "failed": "Cancelled"
+      }
+    }
+  },
+  "kyc": {
+    "start": {
+      "title": "Let's complete KYC?",
+      "description": "<p>It will take a couple of minutes.</p><p>Please prepare your passport or ID card.</p>"
+    },
+    "stepsSubtitle": "Step {step} of {quantity}",
+    "steps": {
+      "1": {
+        "title": "Contact details",
+        "form": {
+          "phone": "Phone Number"
+        },
+        "info": {
+          "title": "Unfortunately, at the moment our service does not support mobile operator numbers in your country.",
+          "description": "<p>To apply for a card, you must use a mobile operator number in other countries.</p><p>* This restriction does not apply to documents proving your identity.</p>"
+        }
+      },
+      "2": {
+        "title": "Personal Information",
+        "description": "Please fill in the information in English only",
+        "form": {
+          "lastName": {
+            "title": "Last Name",
+            "placeholder": "Enter last name"
+          },
+          "firstName": {
+            "title": "First Name",
+            "placeholder": "Enter first name"
+          },
+          "middleName": {
+            "title": "Middle Name",
+            "placeholder": "Enter middle name"
+          },
+          "date_of_birth": {
+            "title": "Date of Birth",
+            "placeholder": "DD.MM.YYYY"
+          },
+          "email": {
+            "title": "Email",
+            "placeholder": "Enter email address"
+          }
+        }
+      },
+      "3": {
+        "title": "Identity Verification",
+        "description": "Select document type for identity verification",
+        "passport": "Passport",
+        "drivingLicense": "National ID",
+        "uploadImage": "Attach a photo or scan of a document."
+      },
+      "4": {
+        "title": "Identity Verification",
+        "info": "Supported file types: png, jpg, svg, heic, heif",
+        "form": {
+          "document_number": {
+            "title": "Document Number",
+            "placeholder": "Enter number"
+          },
+          "document_expiry_date": {
+            "title": "Document Expiry Date",
+            "placeholder": "DD.MM.YYYY"
+          },
+          "file": {
+            "title": "Document Photo"
+          }
+        }
+      }
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "previous": "Back",
+      "next": "Next"
+    },
+    "success": "Your application has been received, results will take from <span class='text-primary'>1 minute</span> to <span class='text-primary'>several hours</span>"
+  },
+  "promoCode": {
+    "title": "Promocode",
+    "placeholder":"Enter promocode"
+  },
+  "drawers": {
+    "kycInProgress": {
+      "title": "Your card is almost ready"
+    },
+    "noFunds": {
+      "title": "Insufficient funds",
+      "description": "Please top up your balance to purchase the card.<br />Card price: {price} USDT<br />Your balance: {balance}",
+      "deposit": "Deposit"
+    },
+    "purchaseCard": {
+      "title": "Purchase Card",
+      "description": "{price} USDT will be deducted from your balance.",
+      "minAmount": "Amount must be positive",
+      "amount": "Amount",
+      "submit": "Purchase",
+      "success": {
+        "title": "Card Purchased",
+        "description": "Congratulations on your purchase!"
+      }
+    },
+    "freezeCard": {
+      "freeze": {
+        "title": "Freeze Card",
+        "description": "Are you sure you want to freeze the card?",
+        "submit": "Freeze",
+        "success": "Card successfully frozen"
+      },
+      "unfreeze": {
+        "title": "Unfreeze Card",
+        "description": "Are you sure you want to unfreeze the card?",
+        "submit": "Unfreeze",
+        "success": "Card successfully unfrozen"
+      }
+    },
+    "depositCard": {
+      "title": "Top Up Card",
+      "description": "Enter amount. It will be deducted from your balance and credited to the card.",
+      "minAmount": "Amount must be positive",
+      "amount": "Amount",
+      "submit": "Top Up",
+      "info": {
+        "title": "You will receive {amount} on your card",
+        "description": "Card top-up fee is {percent}%, minimum ${min}."
+      },
+      "success": {
+        "title": "Card Topped Up"
+      }
+    },
+    "cardTransactions": {
+      "title": "Transactions",
+      "noData": "No transactions"
+    },
+    "deposits": {
+      "title": "Deposits",
+      "noData": "No deposits",
+      "fee": "Fee"
+    },
+    "operations": {
+      "title": "Operations",
+      "noData": "No operations"
+    },
+    "linkPay": {
+      "title": "Add Card to ApplePay/GooglePay",
+      "code": "Activation Code",
+      "text": "To add the card to Apple Pay / Google Pay, enter the card details manually on your smartphone. When choosing the activation method, select email verification, then click the button below to receive the activation code.",
+      "request": "Request Code"
+    }
+  },
+  "header": {
+    "balance": "USDT Balance",
+    "bonuses": "Bonuses"
+  },
+  "authScreen": {
+    "title": "Auth",
+    "email": {
+      "title": "Email",
+      "placeholder": "Enter email address"
+    },
+    "password": {
+      "title": "Password",
+      "placeholder": "Enter password"
+    },
+    "enter": "Login",
+    "register": "Register?"
+  },
+  "registerScreen": {
+    "steps": {
+      "1": {
+        "title": "Contact Information"
+      },
+      "2": {
+        "title": "Email Confirmation",
+        "email": "Code sent to the address:",
+        "resendWithTime": "Resend code in: {time}",
+        "resend": "Resend code"
+      },
+      "3": {
+        "title": "Set Password",
+        "subtitle": "Password must:",
+        "description": [
+          "be at least 8 characters long",
+          "contain one uppercase letter",
+          "contain one lowercase letter",
+          "contain one digit",
+          "contain one special character"
+        ],
+        "password": {
+          "title": "Password",
+          "placeholder": "Enter password"
+        },
+        "confirmPassword": {
+          "title": "Confirm Password",
+          "placeholder": "Repeat password"
+        }
+      }
+    }
+  },
+  "wellcomeScreen": {
+    "title": "Virtual <span>CyberPay</span> Card",
+    "text": "Pay with your card online and worldwide using your phone",
+    "getCard": "Get Card",
+    "support": "Support",
+    "list": {
+      "0": {
+        "title": "Worldwide Payments",
+        "text": "Make purchases in 180 countries including Asia and Europe"
+      },
+      "1": {
+        "title": "Card in Your Phone",
+        "text": "Add the card to Apple Pay or any other mobile payment system"
+      },
+      "2": {
+        "title": "Top Up in Rubles",
+        "text": "Top up your card using Russian bank cards or Tether USDT cryptocurrency"
+      }
+    }
+  },
+  "kycForm": {
+    "description": "Please fill in using Latin characters",
+    "fields": {
+      "name": "First Name",
+      "lastName": "Last Name",
+      "phoneNumber": "Phone Number",
+      "selectCountryCode": "Country",
+      "email": "Email",
+      "dateOfBirth": "Date of Birth",
+      "country": "Country",
+      "passport": "Passport Number",
+      "validUpTo": "Valid Until",
+      "passportPhoto": "Passport Photo"
+    },
+    "submit": "Submit",
+    "kycInProcess": "KYC in progress"
+  },
+  "deposit": {
+    "title": "Deposit USDT (BEP20)",
+    "hint": "Send only USDT on BSC (BEP20) network",
+    "warning": "Sending other coins may result in irreversible loss"
+  },
+  "cards": {
+    "balance": "Card Balance",
+    "wallet": "",
+    "addCard": "New Card",
+    "noCards": {
+      "title": "No Cards Found",
+      "purchase": "Purchase Card"
+    },
+    "process": {
+      "APPLYING": "Application in progress",
+      "WAIT_AUDIT": "Waiting for audit",
+      "CARD_INIT": "Card is being issued",
+      "AUDIT_PASS": "Audit passed",
+      "AUDIT_REFUSE": "Audit refused",
+      "INIT": "Initialization",
+      "PENDING_ISSUE": "Card is being issued",
+      "PENDING_ACTIVE": "Activation in progress",
+      "DELETED_BY_USER": "Deleted by user",
+      "ACTIVE": "Card is active",
+      "LOCK": "Card is locked",
+      "SUSPENDED": "Card is suspended",
+      "CANCELED": "Card is canceled",
+      "BALANCE_LOCK": "Card blocked due to negative balance. Top up your balance"
+    },
+    "ref": "<span class='text-primary'>Invite</span> friends<br />and <span class='text-primary'>earn</span> real USDT"
+  },
+  "card": {
+    "activating": "Activation in progress",
+    "activatingFull": "Card activation in progress, this may take from 15 minutes to several hours.",
+    "showInfo": "Show",
+    "hideInfo": "Hide",
+    "deposit": "Top Up Card",
+    "transactions": "Transactions",
+    "freezing": "Card is being frozen",
+    "unfreezing": "Card is being unfrozen",
+    "freeze": "Freeze Card",
+    "unfreeze": "Unfreeze Card",
+    "deposits": "Deposit History",
+    "operations": "Card Operations",
+    "linkPay": "Link ApplePay/GooglePay",
+    "data": "Card Details",
+    "number": "Card Number",
+    "expiration": "Card Expiry Date",
+    "pin": "PIN code",
+    "cvv": "CVC Code",
+    "until": "Valid until {expiration}",
+    "enterAmount": "Enter amount"
+  },
+  "bonuses": {
+    "title": "Bonuses",
+    "text": "Accumulated bonuses will be transferred to your bank card within the CyberPay system.",
+    "claim": "Claim"
+  },
+  "onboarding": {
+    "one": {
+      "textStart": "Open a virtual bank card with",
+      "textLink": "instant top-up",
+      "textEnd": "using cryptocurrencies"
+    },
+    "two": {
+      "textStart": "Pay",
+      "textLink": "worldwide",
+      "textEnd": "using Apple Pay or Google Pay"
+    }
+  },
+  "navigate": {
+    "wallet": "Wallet",
+    "card": "Card",
+    "account": "Account"
+  },
+  "wallet": {
+    "balance": "Wallet Balance",
+    "requestInfo": "Virtual card with <span class='text-primary'>Apple Pay</span> and <span class='text-primary'>Google Pay</span> support",
+    "request": "Apply for Card",
+    "buyCard": "Buy a card",
+    "operations": "Wallet Operations"
+  },
+  "walletOutput": {
+    "title": "Withdrawal from wallet",
+    "titleRef": "Withdrawal from referral system",
+    "fields": {
+      "network": "Network",
+      "networkPlaceholder": "Select network",
+      "walletNumber": "Wallet address",
+      "walletNumberPlaceholder": "Wallet number for withdrawal",
+      "equal": "Amount",
+      "equalPlaceholder": "Enter amount"
+    },
+    "receive": "You will receive:",
+    "commission": "Commission:",
+    "message": "Your application for the withdrawal of funds has been accepted. Transaction processing will take up to 12 hours, as mandatory moderation is required. Thank you for patience!"
+  },
+  "healthCheck": {
+    "title": "🚧 The application is temporarily unavailable",
+    "description": "The application is currently undergoing maintenance and is temporarily unavailable. If you need to perform any operations with your card or wallet, please contact our technical support team.",
+    "button": "Contact Support"
+  },
+  "transactionType": {
+    "BUY_CARD": "Buy card",
+    "INPUT": "Input",
+    "CHARGE": "Deposit",
+    "REFUND": "Refund",
+    "TOP_UP": "Top Up",
+    "REF_BONUS": "Referral bonuses",
+    "REPAY": "Repayment",
+    "CASHBACK": "Cashback",
+    "INTEREST": "Interest",
+    "FEE": "Fee",
+    "OTHER": "Other",
+    "TO_CARD": "To card",
+    "TO_WALLET": "To Wallet",
+    "OUTPUT": "Withdraw",
+    "FAIL": "Unsuccessful"
+  },
+  "walletOperation": {
+    "title": "Operation History",
+    "filters": {
+      "type": "Operation Type",
+      "currency": "Currency",
+      "date": "Date"
+    }
+  },
+  "addUsdt": {
+    "title": "USDT Deposit",
+    "selectNetwork": "Select Network"
+  },
+  "lock": {
+    "title": "This feature is under development"
+  },
+  "requestCard": {
+    "title": "Virtual Card",
+    "description": "Get a Visa card and make payments worldwide using Apple Pay and Google Pay",
+    "cardPrice": "Card cost",
+    "pay": "Pay {price}",
+    "addBalance": "Top up wallet balance",
+    "enterCode": "Enter promocode",
+    "info": {
+      "new": {
+        "title": "Cryptocurrency replenishment",
+        "text": "Instant card replenishment using USDT. Commissions from 1.5% to 2.5%"
+      },
+      "world": {
+        "title": "Worldwide Payments",
+        "text": "Make purchases in 180 countries including Asia and Europe"
+      },
+      "card": {
+        "title": "Card in Your Phone",
+        "text": "Add the card to Apple Pay or any other mobile payment system"
+      },
+      "crypto": {
+        "title": "Cryptocurrency Top-up",
+        "text": "Conveniently and quickly top up your card using USDT on the most popular networks"
+      }
+    },
+    "kycInfo": {
+      "success": {
+        "title": "<p>Congratulations!</p><p>Your application has been approved.</p>",
+        "description": "Enter the promotional code below if you have one, or pay for the card using cryptocurrency."
+      },
+      "pending": {
+        "title": "Checking Data",
+        "description": "The process takes from 2 to 5 minutes, at most up to 24 hours"
+      },
+      "fail": {
+        "title": "Your KYC application has been rejected",
+        "description": "Learn about common rejection reasons →"
+      }
+    },
+    "kycCheck": "While we are checking your data, you can purchase a card so as not to waste extra time",
+    "notification": "Pay after receiving the card",
+    "action": {
+      "runKyc": "Complete KYC"
+    }
+  },
+  "user": {
+    "RefClassic": "Referral Dashboard",
+    "settings": {
+      "faq": "FAQ",
+      "setting": "App Language",
+      "support": "Support",
+      "shield": "Privacy",
+      "logout": "Logout"
+    }
+  },
+  "refSelect": {
+    "title": "Select the type of  <span class='text-primary'>referral system</span>",
+    "links": {
+      "stat": {
+        "title": "Classic",
+        "description": "A long description of the referral system that explains its functionality clearly, concisely, and comprehensively."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "description": "A long description of the referral system that explains its functionality clearly, concisely, and comprehensively."
+      }
+    }
+  },
+  "RefClassic": {
+    "balance": "Referral Balance",
+    "stat": "Statistics"
+  },
+  "tariffs": {
+    "title": "Tariffs"
+  },
+  "toFrom": {
+    "from": "From",
+    "to": "To",
+    "toCard": "To Card",
+    "fromWallet": "From Wallet",
+    "toWallet": "To Wallet",
+    "fromRef": "From Referral System"
+  },
+  "languagePage": {
+    "title": "Select Language",
+    "russian": "Russian",
+    "english": "English"
+  },
+  "faqPage": {
+    "title": "FAQ",
+    "info": {
+      "1":{
+        "question": "What documents can be used to apply for a card?",
+        "answer": "<p>Hello! Currently, the following documents are accepted for verification: passport or ID.</p><p>For your information, here is the list of countries with registration restrictions at the moment:</p><ul><li>BY Belarus</li><li>RU Russia</li><li>IR Iran</li><li>LY Libya</li><li>SY Syria</li><li>SO Somalia</li><li>VE Venezuela</li><li>YE Yemen</li><li>ZW Zimbabwe</li><li>CU Cuba</li><li>KP North Korea (DPRK)</li><li>CD Congo</li><li>CF Central African Republic</li><li>MM Myanmar (Burma)</li><li>HT Haiti</li><li>AR Argentina</li></ul>"
+      },
+      "2": {
+        "question": "Good afternoon! Where can I see the rates?",
+        "answer": "<p>Hello! The cost of issuing a card is 50 US dollars for 3 years, and the account replenishment in the app is 0%. A fee of 2.5% is charged when replenishing the card (conversion to US dollars).</p><p>The payment system has several card issuing partners.</p><p>Considering local advantages, we choose the one that best serves our clients in the region.</p><p>You can register a card from Russia only if you have a phone number from the list of countries available for registration.</p><p>And you will only be able to use this card in other countries or for paying for services.</p><p>For your information, here is the list of countries with registration restrictions at the moment:</p><ul><li>BY Belarus</li><li>RU Russia</li><li>IR Iran</li><li>LY Libya</li><li>SY Syria</li><li>SO Somalia</li><li>VE Venezuela</li><li>YE Yemen</li><li>ZW Zimbabwe</li><li>CU Cuba</li><li>KP North Korea (DPRK)</li><li>CD Congo</li><li>CF Central African Republic</li><li>MM Myanmar (Burma)</li><li>HT Haiti</li><li>AR Argentina</li></ul><p>If your country is on this list, you should use a phone number available to you from another country</p>"
+      },
+      "3": {
+        "question": "Tell me about the card usage conditions.",
+        "answer": "<p>Hello! This is a virtual card that can be used for payments in 180 countries, just like a regular card.</p><p>Replenishment is done with cryptocurrency.</p><p>The cost of issuing the card is $50</p>"
+      },
+      "4": {
+        "question": "What fees are there?",
+        "answer": "<p>Wallet replenishment is free of charge, but there is a small fee of about 2% for card replenishment and some transactions due to conversion</p>"
+      },
+      "5": {
+        "question": "Can I get a plastic card?",
+        "answer": "<p>Hello! No, currently only a virtual card can be issued</p>"
+      },
+      "6": {
+        "question": "Can I withdraw cash from an ATM?",
+        "answer": "<p>No, the card is only for making purchases</p>"
+      },
+      "7": {
+        "question": "How do I close the card?",
+        "answer": "<p>The card will automatically be canceled after 3 years, or if you urgently need to close it, it's better to spend the funds on the card, and from your personal account, we can help transfer it to your address</p>"
+      },
+      "8": {
+        "question": "What is the minimum age to apply for a card?",
+        "answer": "<p>You must be at least 18 years old</p>"
+      },
+      "9": {
+        "question": "What services can I pay for with your card?",
+        "answer": "<p>Currently, the card cannot be used to pay for the following services:</p><ul><li>Netflix</li><li>Wise</li><li>UBER</li><li>ChatGPT</li><li>BETTING</li><li>WAGERING</li><li>LOTTERY</li><li>GAMBLING</li></ul>"
+      },
+      "10": {
+        "question": "Tell me about your referral programs.",
+        "answer": "<p>You will receive $15 for your referral's card issuance and 0.3% for each subsequent replenishment of their card</p>"
+      }
+    }
+  },
+  "referralDepth": {
+    "tabs": {
+      "stat": "Statistics",
+      "history": "History"
+    },
+    "programStructure": "Program Structure",
+    "levelNumber": "Level {level}",
+    "description": "{percent}% from transactions and ${dollar} from card sales",
+    "card": "Card",
+    "referral": "Referrals",
+    "turnover": "Turnover"
+  }
+}

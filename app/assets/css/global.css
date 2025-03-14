@@ -1,0 +1,110 @@
+:root {
+  /* --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  --font: Montserrat, sans-serif;
+
+  --bg-primary: #1c1c1d;
+  --link-color: #4562ed;
+  --section-header: var(--tg-theme-section-header-text-color);
+}
+
+#root {
+  height: var(--tg-viewport-height);
+  overflow: auto;
+  display: flex;
+  flex-direction: column
+}
+
+html {
+  background-color: #100F10;
+}
+
+body {
+  min-height: var(--tg-viewport-height) !important;
+  padding-top: var(--tg-content-safe-area-inset-top) !important;
+  color: #fff;
+  background-color: #100F10;
+  font-family: var(--font);
+  font-synthesis-weight: none;
+  text-rendering: optimizelegibility;
+  overflow: hidden;
+
+  &.stop-scroll {
+    margin: 0;
+    overflow: auto;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    touch-action: none;
+    -ms-touch-action: none;
+  }
+
+  & * {
+    user-select: none;
+  }
+}
+
+#__nuxt {
+  height: var(--tg-viewport-height) !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  background-color: rgb(39 39 42);
+  border-radius: 4px;
+}
+
+input::file-selector-button {
+  background-image: linear-gradient(to right, rgb(39 39 42), rgb(39 39 42) 100%);
+  background-position-x: 0%;
+  background-size: 200%;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  padding: 2px;
+  margin-right: 5px;
+}
+
+.app {
+  @apply relative flex flex-col space-y-5;
+  height: 100% !important;
+}
+
+.keyboard {
+  height: calc(100% + 500px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.2s;
+}
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translate(50px, 0);
+}
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translate(-50px, 0);
+}
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translate(-50px, 0);
+}
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translate(50px, 0);
+}

@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  app:
+    image: "ghcr.io/digitalppls/cyberpay-web:latest"
+    environment:
+      - NUXT_PUBLIC_BASE_URL=https://publ.life
+      - NUXT_SENTRY=https://9a13c99861ef546c23d9813086b7af09@sentry.cybase.io/7
+      - NUXT_SENTRY_AUTH=f46805d4cc6011efb5d10242ac12002e
+      - NUXT_ENV=development
+      - NUXT_PUBLIC_VAPID_KEY=BCl_Ox3WlGufBE9oMgNu7vYIu5tow8Ue8eX0zzTnJ6WTN4cqQHZ2N4qFIL3b9LPEJPqyqtttGNsSBLmjAROvAXw
+      - NUXT_PUBLIC_FIREBASE_API_KEY=AIzaSyAVDeaMARJSC4smML4xSViZ9j3eWysLfPM
+      - NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN=cyber-pay-dev.firebaseapp.com
+      - NUXT_PUBLIC_FIREBASE_PROJECT_ID=cyber-pay-dev
+      - NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET=cyber-pay-dev.firebasestorage.app
+      - NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=891978661856
+      - NUXT_PUBLIC_FIREBASE_APP_ID=1:891978661856:web:9d50ecda6af1118ebb3585
+      - NUXT_PUBLIC_FIREBASE_MEASUREMENT_ID=G-RQJXQJLM9H
+    deploy:
+      replicas: 1
+      placement:
+        max_replicas_per_node: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        monitor: 10s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+
+        # CONNECT DOMAIN
+        - "traefik.http.routers.dev_web.entrypoints=web"
+        - "traefik.http.routers.dev_web.rule=Host(`publ.life`) || Host(`app.publ.life`)"
+        - "traefik.http.routers.dev_web.priority=50"
+        - "traefik.http.routers.dev_web.middlewares=non_www_web@docker,nocache@docker"
+        - "traefik.http.services.dev_web.loadbalancer.server.port=4000"
+        
+        # NO-CACHE 
+        - "traefik.http.middlewares.nocache.headers.customrequestheaders.Cache-Control=no-cache"
+        - "traefik.http.middlewares.nocache.headers.customrequestheaders.Pragma=no-cache"
+
+        # REDIRECT www TO non-www
+        - "traefik.http.middlewares.non_www_web.redirectregex.regex=^(https?)://(?:www\\.)?(.+)"
+        - "traefik.http.middlewares.non_www_web.redirectregex.replacement=$${1}://$${2}"
+        - "traefik.http.middlewares.non_www_web.redirectregex.permanent=true"
+
+    networks:
+      - web_network
+
+networks:
+  web_network:
+    external: true

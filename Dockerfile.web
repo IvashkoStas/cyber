@@ -1,0 +1,24 @@
+# Базовый образ для установки зависимостей
+FROM node:21-alpine AS install
+WORKDIR /app
+COPY package.json ./
+RUN npm i -g pnpm
+RUN pnpm install
+
+# Базовый образ для сборки приложения
+FROM node:21-alpine AS build
+WORKDIR /app
+COPY --from=install /app/node_modules /app/node_modules
+COPY . .
+RUN npx nuxi cleanup
+RUN npm run generate
+
+# Финальный образ для сервирования статических файлов
+FROM joseluisq/static-web-server:2
+WORKDIR /app
+COPY --from=build /app/.output/public /app
+ENV SERVER_ROOT=/app
+ENV SERVER_PORT=4000
+ENV SERVER_COMPRESSION=true
+ENV SERVER_ERROR_PAGE_404=/app/index.html
+ENV SERVER_REDIRECT_TRAILING_SLASH=false

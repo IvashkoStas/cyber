@@ -1,0 +1,18 @@
+export const disableCountries = [
+  'AR',
+  'BY',
+  'RU',
+  'IR',
+  'LY',
+  'SY',
+  'SO',
+  'VE',
+  'YE',
+  'ZW',
+  'CU',
+  'KP',
+  'CD',
+  'CF',
+  'MM',
+  'HT',
+];

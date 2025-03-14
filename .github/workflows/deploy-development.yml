@@ -1,0 +1,77 @@
+name: 📱🍀 APP DEVELOPMENT
+on:
+  push:
+    branches:
+      - 'dev'
+jobs:
+  deploy:
+    name: build && push image to docker hub
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '#') }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 'dev'
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CICD_TOKEN }}
+
+      - name: build and push api
+        id: build-push-api
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile.web
+          push: true
+          tags: ghcr.io/digitalppls/cyberpay-web:latest
+        if: ${{ !contains(github.event.head_commit.message, 'docker-compose') }}
+
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 150.241.95.117
+          username: root
+          port: 22
+          key: ${{ secrets.DEPLOY_SSHKEY }}
+          source: "./docker-compose.dev_web.yml"
+          target: "/"
+          overwrite: true
+
+      - name: Deploy via SSH action
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 150.241.95.117
+          username: root
+          key: ${{ secrets.DEPLOY_SSHKEY }}
+          port: 22
+          script: |
+            cd /
+            docker stack deploy -c docker-compose.dev_web.yml --with-registry-auth dev_web

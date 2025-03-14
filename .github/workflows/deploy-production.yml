@@ -1,0 +1,44 @@
+name: 🚀 APP PRODUCTION
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  deploy:
+    name: update image from github to server
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '#') }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+         ref: 'master'
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CICD_TOKEN }}
+
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 150.241.95.117
+          username: root
+          port: 22
+          key: ${{ secrets.DEPLOY_SSHKEY }}
+          source: "./docker-compose.prod_web.yml"
+          target: "/"
+          overwrite: true
+          
+      - name: Deploy via SSH action
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 150.241.95.117
+          username: root
+          key: ${{ secrets.DEPLOY_SSHKEY }}
+          port: 22
+          script: |
+            cd /
+            docker stack deploy -c docker-compose.prod_web.yml --with-registry-auth prod_web
