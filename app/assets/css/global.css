@@ -15,7 +15,7 @@
   --section-header: var(--tg-theme-section-header-text-color);
 }
 
-.dark-mode body {
+.dark body {
   --bg-body: #001919;
   --bg-block: #102626;
   --primary-color: #ffffff;

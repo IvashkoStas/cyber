@@ -19,6 +19,8 @@ const { initData } = useWebApp();
 const USER_PHOTO = '/images/user.png';
 const CRYPTO_PAY_BOT = 'cryptopaybot.com';
 
+const colorMode = useColorMode();
+
 const icons = {
   setting: LangIcon,
   shield: ShieldIcon,
@@ -77,6 +79,11 @@ const username = computed(() => {
       await updateUserDeviceTokens(messageToken);
   }
 } */
+
+
+function onChangeTheme() {
+  colorMode.value = colorMode.value === 'light' ? 'dark' : 'light';
+}
 </script>
 
 <template>
@@ -107,6 +114,7 @@ const username = computed(() => {
       <!-- <li>
         <UiButton action theme @click="requestPermission">notify user</UiButton>
       </li> -->
+      <button @click="onChangeTheme">change theme: {{ colorMode.value }}</button>
       <li v-for="[key, icon] in Object.entries(icons)" :key="key">
           <NuxtLink
             class="settings-item"

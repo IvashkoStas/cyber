@@ -109,7 +109,7 @@ const showMenu = computed(
 </template>
 
 <style lang="scss">
-.dark-mode .navigate {
+.dark .navigate {
   background-color: var(--bg-block);
   box-shadow: 0px 5px 27.6px 0px #00000040;
 }
