@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 import { useWebApp, useWebAppTheme } from 'vue-tg';
-import { AppRoutes, AppRoutesNames } from '~/constants/app.route';
+import { AppRoutesNames } from '~/constants/app.route';
 import { Keys } from '~/constants/keys';
 
 const { initData } = useWebApp();
@@ -31,13 +31,13 @@ await useAsyncData('init', async () => {
     await checkHealth();
     initConverter();
 
-    if (!initData.length && !token.value?.length && !xTgToken.value?.length) {
-      if (route.name === AppRoutesNames.REGISTER) {
-        return;
-      }
+    // if (!initData.length && !token.value?.length && !xTgToken.value?.length) {
+    //   if (route.name === AppRoutesNames.REGISTER) {
+    //     return;
+    //   }
 
-      return await navigateTo(AppRoutes.AUTH);
-    }
+    //   return await navigateTo(AppRoutes.AUTH);
+    // }
 
     const data = await Promise.all([
       getUser(),
@@ -57,10 +57,11 @@ await useAsyncData('init', async () => {
 });
 
 const colorMode = useColorMode();
-colorMode.preference = 'system';
 // colorMode.preference = 'light';
 
 onMounted(async () => {
+  colorMode.preference = 'system';
+  colorMode.value = 'dark';
   // window?.Telegram?.WebApp.requestFullscreen?.();
 
   console.table({
@@ -74,7 +75,7 @@ onMounted(async () => {
     document.documentElement.style.setProperty('--tg-viewport-height', '100dvh');
     document.documentElement.style.setProperty('--tg-viewport-stable-height', '100dvh');
   } else {
-    colorMode.preference = theme.colorScheme.value;
+    colorMode.value = theme.colorScheme.value;
   }
 
   const style = window.getComputedStyle(document.body);

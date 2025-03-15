@@ -114,6 +114,7 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     runtimeConfig: {
       public: {
+        tgInit: '',
         baseUrl: '',
         vapidKey: '',
         vapidKeyProd: '',
@@ -126,6 +127,7 @@ export default defineNuxtConfig({
   $production: {
     runtimeConfig: {
       public: {
+        tgInit: '',
         baseUrl: '',
         vapidKey:'BCl_Ox3WlGufBE9oMgNu7vYIu5tow8Ue8eX0zzTnJ6WTN4cqQHZ2N4qFIL3b9LPEJPqyqtttGNsSBLmjAROvAXw',
         vapidKeyProd: 'BM6Z9AWFP5pf9CKZJcsTZi5tSY7ddE-jtZAMBhUsYe7M-QH3Vss4PpsfCzOTdD--RReJw3K_5qZz6PLkfVYWTxE',

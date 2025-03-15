@@ -155,7 +155,6 @@ function triggerClickOutside(event: Event): void {
       padding-top: 40px;
     }
 
-
     &--open {
       opacity: 1;
       visibility: visible;

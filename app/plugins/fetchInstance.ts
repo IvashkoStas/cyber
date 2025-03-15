@@ -9,7 +9,7 @@ export default defineNuxtPlugin(() => {
   const X_TG_INIT_DATA = getXTgInitData();
 
   const headers = {
-    ...(X_TG_INIT_DATA.length ? { 'X-TG-INIT-DATA': X_TG_INIT_DATA } : {}),
+    ...(X_TG_INIT_DATA?.length ? { 'X-TG-INIT-DATA': X_TG_INIT_DATA } : {}),
     ...(token.value ? { Authorization: `Bearer ${token.value}` } : {}),
     ...(!window?.Telegram?.WebApp.initData?.length ? { 'X-WEB-APP': '1' } : {}),
   };

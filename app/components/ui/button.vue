@@ -41,7 +41,6 @@ const buttonClasses = computed(() => [
     padding: 16px;
     background: rgba(233, 125, 226, 0.2);
     font-size: 15px;
-    font-weight: 500;
     line-height: 1.2;
     text-align: center;
     color: hsl(var(--primary));
@@ -62,7 +61,6 @@ const buttonClasses = computed(() => [
     padding: 16px;
     background: rgb(255 255 255 / 5%);
     font-size: 15px;
-    font-weight: 500;
     line-height: 1.2;
     text-align: center;
     color: rgb(255 255 255 / 80%);
@@ -75,9 +73,14 @@ const buttonClasses = computed(() => [
   }
 
   &--theme {
-    font-weight: 500;
-    background-color: #fff  !important;
-    color: #100F10 !important;
+    background-color: var(--main);
+    color: var(--main-color);
+
+    &:disabled {
+      background-color: var(--bg-block);
+      color: --var(--primary-color);
+
+    }
   }
 }
 </style>

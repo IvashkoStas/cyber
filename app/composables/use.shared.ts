@@ -77,8 +77,8 @@ export default function () {
     }
 
     return {
-      color: appConfig.theme.main,
-      textColor: appConfig.theme.mainColor,
+      color: '#102626',
+      textColor: '#ffffff',
       disabled: true,
     };
   }
@@ -163,6 +163,12 @@ export default function () {
   }
 
   function getXTgInitData() {
+    if (import.meta.env.DEV) {
+      const { tgInit } = useRuntimeConfig().public;
+
+      return tgInit;
+    }
+
     if (window?.Telegram?.WebApp.initData?.length) {
       return window?.Telegram?.WebApp.initData;
     }
