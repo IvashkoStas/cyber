@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import ArrowOperationIcon from '~/assets/icons/arrows/arrow-operation.svg';
+import ArrowCircleIcon from '~/assets/icons/arrows/arrow-circle.svg';
+
 import { TransactionStatus } from '~~/types/tx';
 
 interface PropsItem {
@@ -23,17 +24,19 @@ const priceClasses = computed(() => ['price', {
 }]);
 
 const title = computed(() => props.status === TransactionStatus.FAIL ? TransactionStatus.FAIL : props.category);
+
+const priceText = computed(() => `${props.type === 'in' ? '+' : '-'} ${props.price}`);
 </script>
 
 <template>
   <li class="operation-list__item">
     <div class="icon-wrapper">
-      <ArrowOperationIcon :class="iconClasses" />
+      <ArrowCircleIcon :class="iconClasses" />
     </div>
     <div class="info">
       <div class="info-header">
         <h4 class="info-title">{{ $t(`transactionType.${title}`) }}</h4>
-        <div :class="priceClasses">{{ price }}</div>
+        <div :class="priceClasses">{{ priceText }}</div>
       </div>
       <div class="info-footer">
         <p class="info-category">{{ merchant }}</p>
@@ -50,19 +53,19 @@ const title = computed(() => props.status === TransactionStatus.FAIL ? Transacti
   gap: 10px;
 
   .icon-wrapper {
-    flex: 0 0 40px;
-    width: 40px;
-    height: 40px;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: rgb(255 255 255 / 10%);
+    background-color: var(--bg-block);
 
     .icon {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
 
       &--rotate {
         transform: rotate(180deg);

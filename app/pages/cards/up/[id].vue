@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
-import ArrowCircleIcon from '~/assets/icons/arrows/arrow-circle.svg';
 import { AppRoutes } from '~/constants/app.route';
 import { BalanceSymbol } from '~~/types/balance';
 
@@ -198,10 +197,9 @@ function onSelectFrom(value: From) {
           @click="onSelectFrom(value)"
         />
       </UiDropMenu>
-      <div class="place palace-wallet">
+      <div class="place palace-wallet place--first">
         <div class="place-header">
-          <ArrowCircleIcon class="size-5 icon" />
-          <span>{{ $t(nameByFrom) }}</span>
+          {{ $t(nameByFrom) }}
         </div>
         <div class="place-footer">
           <div class="place-footer__price">{{ formatPrice(balanceByFrom) }}</div>
@@ -210,8 +208,7 @@ function onSelectFrom(value: From) {
       </div>
       <div class="place palace-card">
         <div class="place-header">
-          <ArrowCircleIcon class="size-5 rotate-180 icon" />
-          <span>{{ $t('toFrom.toCard') }}</span>
+          {{ $t('toFrom.toCard') }}
         </div>
         <div class="place-footer">
           <div class="place-footer__price">
@@ -269,43 +266,29 @@ function onSelectFrom(value: From) {
       gap: 14px;
       padding: 15px;
       border-radius: 15px;
-      background: rgb(255 255 255 / 5%);
+      background: var(--bg-block);
+
+      &--first {
+        background: var(--accent-block);
+      }
 
       &-header {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        font-size: 13px;
-        font-weight: 500;
-        line-height: 1.2;
-        color: rgb(255 255 255 / 50%);
-
-        .icon {
-          width: 20px;
-          height: 20px;
-          color: #fff;
-          stroke: #000;
-        }
+        font-size: 14px;
       }
 
       &-footer {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
+        align-items: baseline;
+        gap: 8px;
 
         &__price {
-          font-size: 30px;
+          font-size: 34px;
           font-weight: 500;
-          line-height: 1.2;
-          letter-spacing: 1px;
         }
 
         &__currency {
-          font-size: 15px;
-          line-height: 1.2;
-          letter-spacing: 1px;
-          color: rgb(255 255 255 / 30%);
+          font-size: 18px;
+          font-weight: 200;
         }
       }
     }

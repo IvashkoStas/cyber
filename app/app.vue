@@ -57,7 +57,7 @@ await useAsyncData('init', async () => {
 });
 
 const colorMode = useColorMode();
-colorMode.preference = 'system';
+colorMode.preference = 'dark';
 
 onMounted(async () => {
   // window?.Telegram?.WebApp.requestFullscreen?.();

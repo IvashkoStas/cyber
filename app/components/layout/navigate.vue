@@ -145,7 +145,7 @@ const showMenu = computed(
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     opacity: 0.5;
     transition: all 0.2s ease-out;
 

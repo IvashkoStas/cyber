@@ -17,9 +17,7 @@ import { AppRoutes } from '~/constants/app.route';
   height: min-content;
 
   &__title {
-    font-size: 20px;
     font-weight: 500;
-    line-height: 1.2;
   }
 }
 </style>

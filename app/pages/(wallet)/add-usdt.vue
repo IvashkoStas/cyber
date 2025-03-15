@@ -40,7 +40,7 @@ async function onCopyLink(): Promise<void> {
 </script>
 
 <template>
-<div class="add-usdt h-full px-5 pb-[120px] pt-[30px]">
+<div class="add-usdt h-full px-5 pb-[50px] pt-[30px]">
   <UiCustomBackButton @click="$router.replace(AppRoutes.WALLET)" />
   <h2 class="add-usdt__title">{{ $t('addUsdt.title') }}</h2>
   <SharedSelectNetwork v-model="selectedNetworkIndex" is-usdt />
@@ -62,7 +62,6 @@ async function onCopyLink(): Promise<void> {
       {{ $t('shared.actions.copy') }}
     </button>
   </section>
-  <CardRef  />
 </div>
 </template>
 
@@ -107,12 +106,11 @@ async function onCopyLink(): Promise<void> {
     .action {
       flex: 0 0 calc(50% - 5px);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 10px;
-      border-radius: 15px;
+      gap: 8px;
+      padding: 16px;
+      border-radius: var(--radius);
       background: rgb(255 255 255 / 5%);
       font-size: 12px;
       font-weight: 300;
@@ -120,13 +118,13 @@ async function onCopyLink(): Promise<void> {
       text-align: center;
 
       &--copy {
-        color: hsl(var(--primary));
-        background: rgba(233, 125, 226, 0.2);
+        color: var(--main-color);
+        background: var(--main);
       }
 
       &-icon {
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
       }
     }
   }

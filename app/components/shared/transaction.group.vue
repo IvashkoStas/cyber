@@ -188,7 +188,7 @@ async function uploadMoreTx() {
   <section v-if="transactionsEntries?.length" class="transaction-group">
     <NuxtLink v-if="showLink && to" :to="to" class="transaction-group__link" @click="impactOccurred('light')">
       {{ linkTitle }}
-      <ArrowNextIcon />
+      <ArrowNextIcon class="transaction-group__link-icon" />
     </NuxtLink>
     <slot />
     <div class="transaction-group__filters">
@@ -223,18 +223,19 @@ async function uploadMoreTx() {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    font-size: 20px;
     font-weight: 500;
-    line-height: 1.2;
     margin-bottom: 20px;
+
+    &-icon {
+      color: var(--main);
+    }
   }
 
   &__date {
     margin-top: 30px;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    color: var(--primary-color);
+    opacity: 0.7;
   }
 
   .transaction-group__spin {

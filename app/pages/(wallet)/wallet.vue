@@ -8,17 +8,17 @@ definePageMeta({
 // const { vapidKey, vapidKeyProd } = useRuntimeConfig().public;
 // const CRYPTO_PAY_BOT = 'cryptopaybot.com';
 // const isCryptoPayBot = window?.location?.hostname?.includes(CRYPTO_PAY_BOT);
-const { balance, user, updateUserDeviceTokens } = useUser();
-const { kyc } = useUser();
+const { balance /* user, updateUserDeviceTokens */ } = useUser();
+// const { kyc } = useUser();
 // const app = useFirebaseApp();
 
-const showRequestCard = computed(() => {
-  if (!kyc.value || !user.value?.cards?.length) {
-    return true;
-  }
+// const showRequestCard = computed(() => {
+//   if (!kyc.value || !user.value?.cards?.length) {
+//     return true;
+//   }
 
-  return false;
-});
+//   return false;
+// });
 
 
 // async function requestNotifyPermission() {
@@ -45,6 +45,12 @@ const showRequestCard = computed(() => {
   <div class="wallet pb-[120px]">
     <div class="hero">
       <BalanceTitle :title="$t('wallet.balance')" :balance="balance" />
+      <BalanceCashback class="ctg-money-ref" />
+      <img
+        src="/ctg-money-logo.svg"
+        class="ctg-money-logo"
+        alt="ctg-money-logo"
+      />
     </div>
       <div class="px-5">
         <section class="wallet-controls">
@@ -56,8 +62,8 @@ const showRequestCard = computed(() => {
         />
       </section>
       <SharedReplenishment />
-      <CardRequest v-if="showRequestCard" :type="user?.partner?.design" />
-      <CardRef v-else />
+      <!-- <CardRequest v-if="showRequestCard" :type="user?.partner?.design" />
+      <CardRef v-else /> -->
       <SharedTransactionGroup
         class="mt-10"
         entity="wallet"
@@ -75,6 +81,7 @@ const showRequestCard = computed(() => {
   .hero {
     height: 281px;
     padding: 20px 30px;
+    position: relative;
     overflow: hidden;
     transform: translateY(-1px);
     background-image: url('/main-frame.svg');
@@ -83,6 +90,22 @@ const showRequestCard = computed(() => {
     background-position: center;
     border-bottom-right-radius: var(--radius);
     border-bottom-left-radius: var(--radius);
+
+
+    .ctg-money {
+      &-ref {
+        position: absolute;
+        left: 20px;
+        bottom: 32px;
+      }
+
+      &-logo {
+        position: absolute;
+        right: 20px;
+        bottom: 32px;
+        height: 15px;
+      }
+    }
   }
 
   &-controls {

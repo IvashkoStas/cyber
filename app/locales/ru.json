@@ -377,7 +377,8 @@
     "requestInfo": "Виртуальная карта с поддержкой <span class='text-primary'> Apple Pay </span> и <span class='text-primary'> Google Pay</span>",
     "request": "Оформить карту",
     "buyCard": "Купить карту",
-    "operations": "Операции по кошельку"
+    "operations": "Операции по кошельку",
+    "cashback": "Ваш кэшбэк"
   },
   "walletOutput": {
     "title": "Вывод с кошелька",

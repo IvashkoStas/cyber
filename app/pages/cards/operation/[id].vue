@@ -19,7 +19,6 @@ import { AppRoutes } from '~/constants/app.route';
 <style lang="scss" scoped>
 .card-operation {
   &__title {
-    font-size: 20px;
     font-weight: 500;
     line-height: 1.2;
   }

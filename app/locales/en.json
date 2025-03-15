@@ -377,7 +377,8 @@
     "requestInfo": "Virtual card with <span class='text-primary'>Apple Pay</span> and <span class='text-primary'>Google Pay</span> support",
     "request": "Apply for Card",
     "buyCard": "Buy a card",
-    "operations": "Wallet Operations"
+    "operations": "Wallet Operations",
+    "cashback": "Ваш кэшбэк"
   },
   "walletOutput": {
     "title": "Withdrawal from wallet",
