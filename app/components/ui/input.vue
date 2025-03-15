@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { type MaskaDetail, type MaskInputOptions, MaskInput } from 'maska';
 
-
-type MaskProp = string | MaskInputOptions
+type MaskProp = string | MaskInputOptions;
 
 interface Props {
   modelValue: string;
+  autofocus?: boolean;
   error?: string;
   title: string;
   class?: string;
@@ -16,18 +16,17 @@ interface Props {
   readonly?: boolean;
   inputmode?: 'email' | 'tel' | 'none' | 'search' | 'url' | 'numeric' | 'decimal' | 'latin-name' | undefined;
   noUpper?: boolean;
+  maxlength?: number;
 }
 
 interface Emits {
   (event: 'update:modelValue', value: string): void;
   (event: 'focus' | 'blur'): void;
-
 }
 
 defineOptions({
   inheritAttrs: false,
 });
-
 
 const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
@@ -42,10 +41,7 @@ const model = computed({
   },
 });
 
-const parentClasses = computed(() => [
-  'new-input',
-  props.class ?? '',
-]);
+const parentClasses = computed(() => ['new-input', props.class ?? '']);
 
 const maskInput = ref<MaskInput | undefined>();
 
@@ -95,7 +91,6 @@ function onPaste(event: ClipboardEvent) {
 
 const fieldType = shallowRef(props.type);
 
-
 /* function onShowPassword() {
   if (props.type !== 'password') {
     return;
@@ -103,6 +98,15 @@ const fieldType = shallowRef(props.type);
 
   fieldType.value =  fieldType.value === 'password' ? 'text' : 'password';
 } */
+
+watch(
+  () => props.autofocus,
+  (value) => {
+    if (value) {
+      inputEl.value?.focus();
+    }
+  },
+);
 </script>
 
 <template>
@@ -123,7 +127,7 @@ const fieldType = shallowRef(props.type);
       @mask="handleMaska"
       @paste.prevent="onPaste"
       @keydown.enter="onEnterClick"
-    >
+    />
     <small v-if="error?.length" class="new-input__error">{{ error }}</small>
   </div>
 </template>
@@ -139,16 +143,24 @@ const fieldType = shallowRef(props.type);
   }
 
   &__input {
+    display: flex;
+    align-items: center;
     width: 100%;
-    margin-top: 7px;
-    padding: 14px 10px;
-    border-radius: 10px;
-    background: rgb(255 255 255 / 5%);
+    min-height: 54px;
+    margin-top: 4px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background-color: var(--input-bg);
     font-size: 14px;
-    line-height: 1.2;
-    color: rgb(255 255 255 / 50%);
+    line-height: normal;
+    color: var(--input-color);
     outline: none;
     border: none;
+
+    &::placeholder {
+      color: var(--ibput-placeholder);
+      opacity: 0.5;
+    }
   }
 
   &__error {
@@ -156,8 +168,9 @@ const fieldType = shallowRef(props.type);
     right: 0;
     bottom: -18px;
     font-size: 10px;
+    text-align: right;
     line-height: 1.2;
-    color: #fff;
+    color: var(--input-color);
   }
 }
 </style>

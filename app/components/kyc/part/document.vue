@@ -14,7 +14,6 @@ interface Emits {
   (event: 'update:modelValue', value: string): void;
 }
 
-
 const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
 
@@ -24,23 +23,21 @@ const { uploadPhoto, hasKycImage, kycImage } = useKyc();
 
 const image = shallowRef(kycImage.value);
 
-const  model = computed({
+const model = computed({
   get: () => props.modelValue,
   set: (value: string) => emits('update:modelValue', value),
 });
 
-const buttons = computed(
-  () => [
-    {
-      title: t('kyc.steps.3.passport'),
-      icon: PassportIcon,
-    },
-    {
-      title: t('kyc.steps.3.drivingLicense'),
-      icon: DrivingLicenseIcon,
-    },
-  ],
-);
+const buttons = computed(() => [
+  {
+    title: t('kyc.steps.3.passport'),
+    icon: '/icons/kyc/passport.svg',
+  },
+  {
+    title: t('kyc.steps.3.drivingLicense'),
+    icon: '/icons/kyc/drivingLicense.svg',
+  },
+]);
 
 function uploadFile(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -68,32 +65,21 @@ function uploadFile(event: Event) {
     <p class="step-three__description">{{ $t('kyc.steps.3.description') }}</p>
     <div class="step-three__actions">
       <label v-for="({ title, icon }, index) in buttons" :key="index" class="step-three__button">
+        <UiRadio v-model="model" class="arrow" name="type" :value="String(index + 1)" />
         <div class="icon-wrapper">
-          <Component :is="icon" />
+          <img :src="icon" :alt="title" />
         </div>
         <p class="title">{{ title }}</p>
-        <UiRadio v-model="model" class="arrow" name="type" :value="String(index + 1)"  />
       </label>
     </div>
     <label class="step-three__image">
-      <input
-        accept=".heic, .heif, image/*,"
-        class="step-three__input"
-        type="file"
-        @change="uploadFile($event)"
-      >
+      <input accept=".heic, .heif, image/*," class="step-three__input" type="file" @change="uploadFile($event)" />
       <template v-if="!hasKycImage && !image">
-        <PlusIcon class="plus-icon" />
+        <img :src="'/icons/kyc/file.svg'" alt="file" class="step-three__image-icon" />
         <p class="step-three__image-description">{{ $t('kyc.steps.3.uploadImage') }}</p>
       </template>
       <Transition name="fade" mode="out-in">
-        <img
-          v-if="image"
-          :key="image"
-          :src="image"
-          class="document"
-          alt="document"
-        />
+        <img v-if="image" :key="image" :src="image" class="document" alt="document" />
       </Transition>
     </label>
   </div>
@@ -101,13 +87,12 @@ function uploadFile(event: Event) {
 
 <style lang="scss" scoped>
 .kyc-step__three {
-  padding: 10px 0 30px;
-
   .step-three {
     &__description {
+      margin-top: 8px;
       font-size: 14px;
       line-height: 1.2;
-      color: rgb(255 255 255 / 50%);
+      color: var(--input-placeholder);
     }
 
     &__actions {
@@ -115,9 +100,6 @@ function uploadFile(event: Event) {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      padding: 15px;
-      border-radius: 15px;
-      background: rgb(255 255 255 / 5%);
     }
 
     &__button {
@@ -125,20 +107,26 @@ function uploadFile(event: Event) {
       align-items: center;
       gap: 4px;
       position: relative;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--bg-block);
+
+      .title {
+        font-weight: 400;
+        font-size: 14px;
+      }
 
       .icon-wrapper {
-        width: 40px;
-        height: 40px;
+        width: 20px;
+        height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        background: #1E1C1F;
       }
 
       .arrow {
         display: block;
-        margin-left: auto;
+        margin-right: 8px;
       }
     }
 
@@ -149,21 +137,22 @@ function uploadFile(event: Event) {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 3px;
+      gap: 12px;
       position: relative;
       border-radius: 15px;
-      background: rgb(255 255 255 / 5%);
+      background: var(--bg-block);
       margin-top: 20px;
       overflow: hidden;
+      border: 1px dashed var(--text-primary);
 
       &-description {
         font-size: 12px;
-        color: rgb(255 255 255 / 50%);
+        color: var(--input-placeholder);
       }
 
-      .plus-icon {
-        height: 24px;
-        width: 24px;
+      &-icon {
+        height: 40px;
+        width: 40px;
       }
 
       .document {
