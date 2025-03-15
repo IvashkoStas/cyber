@@ -5,9 +5,8 @@ import CardWorldIcon from '~/assets/icons/shared/_card-world.svg';
 import CryptoIcon from '~/assets/icons/shared/_crypto.svg';
 import { AppRoutes } from '~/constants/app.route';
 
-
 definePageMeta({
-  middleware: ['onboard', 'no-card', 'no-kyc'],
+  // middleware: ['onboard', 'no-card', 'no-kyc'],
 });
 
 const icons = {
@@ -19,15 +18,13 @@ const iconsNew = {
   new: CryptoIcon,
 };
 
-
-
 const { t } = useI18n();
 const { initData } = useWebApp();
-const { getMainButtonProps, theme } = useShared();
+const { getMainButtonProps, theme, cardPrice } = useShared();
 const { user } = useUser();
 const themeKey = computed(() => theme.colorScheme.value);
 
-const maiButtonText = computed(() =>  t('requestCard.action.runKyc'));
+const maiButtonText = computed(() => t('requestCard.action.runKyc'));
 
 const isVisible = shallowRef(false);
 
@@ -59,34 +56,22 @@ const cardEmptyWrapperClass = computed(() => ({
 <template>
   <div :class="requestCardPageClasses">
     <UiCustomBackButton :visible="isVisible" @click="$router.replace(AppRoutes.WALLET)" />
+    <h1 class="card__title">
+      <span class="text-new-primary">{{ $t('requestCard.topTitleStart') }}</span>
+      {{ $t('requestCard.topTitleEnd') }}
+    </h1>
     <div :class="cardEmptyWrapperClass">
-      <CardEmpty />
+      <CardEmpty>
+        <div class="card__inner">
+          <p class="card__subtitle">{{ $t('requestCard.cardPrice') }}</p>
+          <div class="card__price">${{ cardPrice.toFixed(2) }}</div>
+        </div>
+      </CardEmpty>
     </div>
     <section class="info">
-      <h2 class="info-title">{{ $t('requestCard.title') }}</h2>
       <p class="info-description">{{ $t('requestCard.description') }}</p>
-      <SharedInfoPrice />
-      <ul class="info-list">
-        <li v-for="([key, icon]) in Object.entries(iconsNew)" :key="key" class="list-item">
-          <div class="icon-wrapper">
-            <Component :is="icon" />
-          </div>
-          <div>
-            <h4 class="list-item__title">
-              {{ $t(`requestCard.info.${key}.title`) }}
-            </h4>
-            <p class="list-item__description">
-              {{ $t(`requestCard.info.${key}.text`) }}
-            </p>
-          </div>
-        </li>
-      </ul>
     </section>
-    <SharedInfo
-      v-if="!user?.kyc"
-      :text="$t('requestCard.notification')"
-      class="my-[20px]"
-    />
+    <SharedInfo v-if="!user?.kyc" :text="$t('requestCard.notification')" class="my-[20px]" />
     <UiCustomMainButton
       v-bind="getMainButtonProps(false)"
       :key="themeKey"
@@ -108,8 +93,39 @@ const cardEmptyWrapperClass = computed(() => ({
     height: 100dvh;
   }
 
+  .card {
+    &__inner {
+      border-radius: 15px;
+      padding: 12px;
+      width: 100%;
+      background-color: var(--accent-block);
+    }
+
+    &__title {
+      font-weight: 500;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    &__subtitle {
+      text-align: center;
+      font-weight: 400;
+      font-size: 11px;
+
+      margin-bottom: 8px;
+    }
+
+    &__price {
+      text-align: center;
+      font-weight: 600;
+      font-size: 32px;
+      color: var(--card-price);
+      line-height: 1;
+    }
+  }
+
   .info {
-    margin-top: 25px;
+    margin-top: 24px;
 
     &-title {
       font-size: 22px;
@@ -119,12 +135,10 @@ const cardEmptyWrapperClass = computed(() => ({
     }
 
     &-description {
-      margin-top: 10px;
       font-size: 15px;
       font-weight: 400;
-      line-height: 18.29px;
+      line-height: 1.3;
       text-align: center;
-      color: rgb(255 255 255 / 80%);
     }
 
     &-list {
@@ -163,7 +177,7 @@ const cardEmptyWrapperClass = computed(() => ({
           justify-content: center;
           align-items: center;
           border-radius: 50%;
-          background: #100F11;
+          background: #100f11;
         }
       }
     }

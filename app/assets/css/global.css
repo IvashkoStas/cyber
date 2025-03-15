@@ -3,7 +3,6 @@
   --font: Onest, sans-serif;
   --bg-body: #ffffff;
   --bg-block: #f5f5f5;
-  --bg-block: #f5f5f5;
   --primary-color: #102626;
   --main: #72dada;
   --accent-block: #c4f4f4;
@@ -20,6 +19,9 @@
   --input-placeholder: rgb(16, 38, 38, 0.5);
   --radio-bg: #ebebeb;
   --plate-color: #ededed;
+  --card-bg: #c5efef;
+  --card-price: var(--primary-color);
+  --card-title: var(--bg-body);
 }
 
 .dark body {
@@ -30,10 +32,13 @@
 
   --text-primary: #09e5e5;
   --input-bg: #112121;
-  --input-color: #ffffff;
+  --input-color: var(--primary-color);
   --input-placeholder: rgb(255, 255, 255, 0.5);
   --radio-bg: #1e4141;
-  --plate-color: #102626;
+  --plate-color: var(--bg-block);
+  --card-bg: var(--accent-block);
+  --card-price: var(--text-primary);
+  --card-title: var(--primary-color);
 }
 
 #root {

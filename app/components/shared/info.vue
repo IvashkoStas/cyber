@@ -9,10 +9,7 @@ interface Props {
 
 const { status = Status.WARNING } = defineProps<Props>();
 
-const infoClasses = computed(() => [
-  'shared-info',
-  `shared-info--${status}`,
-]);
+const infoClasses = computed(() => ['shared-info', `shared-info--${status}`]);
 </script>
 
 <template>
@@ -26,8 +23,8 @@ const infoClasses = computed(() => [
 
 <style lang="scss" scoped>
 .shared-info {
-  --color: #CF8E3F;
-  --bg: #CF8E3F33;
+  --color: #cf8e3f;
+  --bg: #cf8e3f33;
 
   display: flex;
   align-items: center;
@@ -40,13 +37,13 @@ const infoClasses = computed(() => [
   color: var(--color);
 
   &--warning {
-    --color: #CF8E3F;
-    --bg: #CF8E3F33;
+    --color: #cf8e3f;
+    --bg: #cf8e3f33;
   }
 
   &--success {
-    --color: #4EC68D;
-    --bg: #4EC68D33;
+    --color: #4ec68d;
+    --bg: #4ec68d33;
   }
 
   // &--error {}
@@ -63,5 +60,4 @@ const infoClasses = computed(() => [
     background-color: var(--bg);
   }
 }
-
 </style>

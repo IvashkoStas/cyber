@@ -6,11 +6,9 @@ import { KycStatus } from '~~/types/kys.status';
 
 const UPDATE_USER_TIMER = 15000;
 
-
 definePageMeta({
   middleware: ['kyc'],
 });
-
 
 const { t } = useI18n();
 const { showPromoToggle, promoCode, promoCodeAC, applyPromoCode } = usePromoCode();
@@ -22,7 +20,7 @@ const { showAlert } = usePopup();
 const themeKey = computed(() => theme.colorScheme.value);
 const sending = shallowRef(false);
 const data = reactive({
-  promocode: !showPromoToggle.value ? promoCode.value?.code ?? '' : '',
+  promocode: !showPromoToggle.value ? (promoCode.value?.code ?? '') : '',
 });
 
 const rules = {
@@ -53,7 +51,7 @@ async function handleKycAction() {
     await onRequestCard();
     await getUser();
     navigateTo(AppRoutes.CARDS);
-  } catch(error: FetchCTX) {
+  } catch (error: FetchCTX) {
     showAlert(error ?? t('shared.labels.error'));
   } finally {
     isCardRequest.value = false;
@@ -73,7 +71,7 @@ async function handlePromoCodeAction() {
 
 async function handleApply() {
   if (!data.promocode.length) {
-    return ;
+    return;
   }
 
   try {
@@ -83,7 +81,7 @@ async function handleApply() {
 
     messageData.state = 'success';
     messageData.message = t('shared.successPromo');
-  } catch(error: FetchCTX) {
+  } catch (error: FetchCTX) {
     messageData.state = 'error';
     messageData.message = error.data.message;
   } finally {
@@ -105,7 +103,9 @@ const updateUserInterval = shallowRef<Nullable<NodeJS.Timeout>>(null);
 const isVisible = shallowRef(false);
 
 onMounted(() => {
-  setTimeout(() => { isVisible.value = true });
+  setTimeout(() => {
+    isVisible.value = true;
+  });
   updateUserInterval.value = setInterval(() => {
     clearUpdateUserInterval();
     getUser();
@@ -135,9 +135,12 @@ const mainButtonText = computed(() => {
   return t('requestCard.pay', { price: `${cardPrice.value.toFixed(2)}$` });
 });
 
-watch(() => v.value.promocode.$model, (value) => {
-  v.value.promocode.$model = value.toLocaleUpperCase();
-});
+watch(
+  () => v.value.promocode.$model,
+  (value) => {
+    v.value.promocode.$model = value.toLocaleUpperCase();
+  },
+);
 
 function pastePromo(event: ClipboardEvent) {
   const paste = event.clipboardData?.getData('text');
@@ -163,12 +166,7 @@ function pastePromo(event: ClipboardEvent) {
     <Transition name="fade">
       <section v-if="user?.kyc?.status === KycStatus.ADOPT_PASS" class="promo-section">
         <div class="promo" @click="handlePromoCodeAction">
-          <input
-            :value="v.promocode.$model"
-            class="promo-input"
-            readonly
-            :placeholder="$t('requestCard.enterCode')"
-          >
+          <input :value="v.promocode.$model" class="promo-input" readonly :placeholder="$t('requestCard.enterCode')" />
           <div class="promo-info" :class="messageData.state">
             {{ messageData.message }}
           </div>
@@ -192,14 +190,9 @@ function pastePromo(event: ClipboardEvent) {
               :placeholder="$t('requestCard.enterCode')"
               @paste.prevent="pastePromo"
               @keydown.enter="handleApply"
-            >
+            />
           </div>
-          <UiButton
-            :disabled="disabledAction"
-            theme
-            action
-            @click.stop="handleApply"
-          >
+          <UiButton :disabled="disabledAction" theme action @click.stop="handleApply">
             {{ $t('requestCard.enterCode') }}
           </UiButton>
         </div>
@@ -259,11 +252,11 @@ function pastePromo(event: ClipboardEvent) {
     text-align: right;
 
     &.error {
-      color: #FF2E2E;
+      color: #ff2e2e;
     }
 
     &.success {
-      color: #4EC68D;
+      color: #4ec68d;
     }
   }
 }

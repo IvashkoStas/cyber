@@ -448,8 +448,10 @@
     "title": "This feature is under development"
   },
   "requestCard": {
+    "topTitleStart": "Virtual Card",
+    "topTitleEnd": "– Spend Crypto Anywhere",
     "title": "Virtual Card",
-    "description": "Get a Visa card and make payments worldwide using Apple Pay and Google Pay",
+    "description": "Get a virtual card and use your crypto for online payments instantly",
     "cardPrice": "Card cost",
     "pay": "Pay {price}",
     "addBalance": "Top up wallet balance",

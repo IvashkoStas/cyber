@@ -6,9 +6,7 @@ const { cardPrice } = useShared();
 <template>
   <div class="info-price">
     {{ $t('requestCard.cardPrice') }}
-    <span v-if="setting" class="price">
-      {{ cardPrice.toFixed(2) }}$
-    </span>
+    <span v-if="setting" class="price">{{ cardPrice.toFixed(2) }}$</span>
   </div>
 </template>
 
@@ -37,13 +35,13 @@ const { cardPrice } = useShared();
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     mask-composite: xor;
-            mask-composite: exclude;
+    mask-composite: exclude;
   }
 
   .price {
     padding: 5px 15px;
     border-radius: 10px;
-    background: linear-gradient(103.12deg, #E97DE2 -0.7%, #524C82 99.3%);
+    background: linear-gradient(103.12deg, #e97de2 -0.7%, #524c82 99.3%);
     font-size: 15px;
     font-weight: 500;
     line-height: 1.2;
