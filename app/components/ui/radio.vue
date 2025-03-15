@@ -5,7 +5,7 @@ interface Props {
   name: string;
 }
 interface Emits {
-  (event: 'update:modelValue', value: T): void
+  (event: 'update:modelValue', value: T): void;
 }
 defineProps<Props>();
 
@@ -21,7 +21,7 @@ defineEmits<Emits>();
       :checked="modelValue === value"
       class="tg-radio__input"
       @change="$emit('update:modelValue', value)"
-    >
+    />
     <div class="tg-radio__custom"></div>
     <span class="tg-radio__label">
       <slot></slot>
@@ -49,7 +49,7 @@ defineEmits<Emits>();
     position: relative;
     height: 20px;
     width: 20px;
-    border: 2px solid #fff;
+    background-color: var(--radio-bg);
     border-radius: 50%;
 
     &::after {
@@ -58,10 +58,10 @@ defineEmits<Emits>();
       display: none;
       top: 50%;
       left: 50%;
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-      background: #fff;
+      background: var(--text-primary);
       transform: translate(-50%, -50%);
     }
   }
@@ -73,11 +73,6 @@ defineEmits<Emits>();
 
   &__input:checked ~ &__custom::after {
     display: block;
-  }
-
-  // Анимация при нажатии
-  &:active &__custom {
-    transform: scale(0.9);
   }
 }
 </style>

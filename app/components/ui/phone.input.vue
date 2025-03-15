@@ -9,10 +9,9 @@ interface Props {
 }
 
 interface Emits {
-  (event: 'update:modelValue', value: string): void
-  (event: 'valid', value: VueTelInputValidateData): void
+  (event: 'update:modelValue', value: string): void;
+  (event: 'valid', value: VueTelInputValidateData): void;
 }
-
 
 defineOptions({
   inheritAttrs: false,
@@ -26,10 +25,7 @@ onMounted(() => {
 });
 
 const VueTelInput = defineAsyncComponent(() =>
-  Promise.all([
-    import('vue-tel-input'),
-    import('vue-tel-input/vue-tel-input.css'),
-  ]).then(([{ VueTelInput }]) => VueTelInput),
+  Promise.all([import('vue-tel-input'), import('vue-tel-input/vue-tel-input.css')]).then(([{ VueTelInput }]) => VueTelInput),
 );
 
 const props = defineProps<Props>();
@@ -42,11 +38,7 @@ const model = computed({
   set: (value: string) => emits('update:modelValue', value),
 });
 
-const parentClasses = computed(() => [
-  'phone-input',
-  props.class ?? '',
-]);
-
+const parentClasses = computed(() => ['phone-input', props.class ?? '']);
 
 function onPhoneInput(_: string, data: VueTelInputValidateData) {
   if (data?.valid) {
@@ -67,7 +59,7 @@ function onPhoneInput(_: string, data: VueTelInputValidateData) {
       mode="international"
       :input-options="{
         showDialCode: true,
-        inputmode: 'tel'
+        inputmode: 'tel',
       }"
       :placeholder="placeholder"
       class="phone-input__input"
@@ -90,13 +82,14 @@ function onPhoneInput(_: string, data: VueTelInputValidateData) {
 
   &__input {
     width: 100%;
-    margin-top: 7px;
+    min-height: 54px;
+    margin-top: 4px;
     padding: 14px 10px;
     border-radius: 10px;
-    background: rgb(255 255 255 / 5%);
+    background-color: var(--input-bg);
     font-size: 14px;
-    line-height: 1.2;
-    color: rgb(255 255 255 / 50%);
+    line-height: normal;
+    color: var(--input-color);
     outline: none;
     border: none;
 
@@ -111,10 +104,11 @@ function onPhoneInput(_: string, data: VueTelInputValidateData) {
 
       .vti__dropdown-list {
         max-height: 220px;
-        width: calc(100vw - 40px);
-        background-color: #29282a !important;
+        width: calc(100vw - 32px);
+        padding: 8px 0;
+        background-color: var(--input-bg) !important;
         border-radius: 10px !important;
-        border: 1px solid rgba(255, 255, 255, 0.03) !important;
+        border: none !important;
         left: unset;
         right: -10px;
 
@@ -125,8 +119,12 @@ function onPhoneInput(_: string, data: VueTelInputValidateData) {
         }
 
         .vti__dropdown-item.highlighted {
-          background-color: rgba($color: #815AEB, $alpha: 0.05);
+          background-color: rgba($color: #815aeb, $alpha: 0.05);
         }
+      }
+
+      .vti__dropdown {
+        padding: 4px;
       }
 
       .vti__dropdown-arrow {
@@ -134,15 +132,23 @@ function onPhoneInput(_: string, data: VueTelInputValidateData) {
       }
 
       .vti__dropdown-item {
-        padding: 10px 5px;
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
         font-size: 14px;
-        color: #fff;
+        color: var(--input-color);
+
+        span:last-of-type {
+          margin-left: 8px;
+        }
 
         .vti__flag {
-          margin-right: 8px;
+          margin-right: 12px;
+          margin-left: 4px;
         }
 
         strong {
+          text-wrap: balance;
           font-weight: 400;
         }
       }

@@ -17,7 +17,7 @@ interface Emits {
 const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
 
-const  documentType = computed({
+const documentType = computed({
   get: () => props.documentType,
   set: (value: string) => emits('update:documentType', value),
 });
@@ -25,11 +25,6 @@ const documentNumber = computed({
   get: () => props.documentNumber,
   set: (value: string) => emits('update:documentNumber', value),
 });
-const documentExpireDate = computed({
-  get: () => props.documentExpireDate,
-  set: (value: string) => emits('update:documentExpireDate', value),
-});
-
 
 const { t } = useI18n();
 
@@ -45,32 +40,38 @@ function getErrorText(index: number) {
 </script>
 
 <template>
-<div class="kyc-step__four">
-  <KycPartDocument v-model="documentType" />
-  <div class="step-four__fields">
-    <UiInput
-      v-model="documentNumber"
-      :title="$t('kyc.steps.4.form.document_number.title')"
-      :placeholder="$t('kyc.steps.4.form.document_number.placeholder')"
-      :error="getErrorText(0)"
-    />
-    <UiInput
-      v-model="documentExpireDate"
-      inputmode="numeric"
-      class="second-field"
-      :title="$t('kyc.steps.4.form.document_expiry_date.title')"
-      :placeholder="$t('kyc.steps.4.form.document_expiry_date.placeholder')"
-      :error="getErrorText(1)"
-      mask="##.##.####"
-    />
+  <div class="kyc-step__four">
+    <KycPartDocument v-model="documentType" />
+    <div class="step-four__fields">
+      <UiInput
+        v-model="documentNumber"
+        :title="$t('kyc.steps.4.form.document_number.title')"
+        :placeholder="$t('kyc.steps.4.form.document_number.placeholder')"
+        :error="getErrorText(0)"
+      />
+      <!-- <UiInput
+        v-model="documentExpireDate"
+        inputmode="numeric"
+        class="second-field"
+        :title="$t('kyc.steps.4.form.document_expiry_date.title')"
+        :placeholder="$t('kyc.steps.4.form.document_expiry_date.placeholder')"
+        :error="getErrorText(1)"
+        mask="##.##.####"
+      /> -->
+      <UiInputDate
+        :error="getErrorText(1)"
+        :date="documentExpireDate"
+        class="second-field"
+        @update:date="$emit('update:documentExpireDate', $event)"
+      />
+    </div>
   </div>
-</div>
 </template>
 
 <style lang="scss" scoped>
 .kyc-step__four {
   max-width: 100vw;
-  padding: 12px 0 20px;
+  padding: 0 0 20px;
 
   .step-four {
     &__description {

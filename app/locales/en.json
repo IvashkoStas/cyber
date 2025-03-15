@@ -100,7 +100,15 @@
           },
           "date_of_birth": {
             "title": "Date of Birth",
-            "placeholder": "DD.MM.YYYY"
+            "1": {
+              "placeholder": "DD"
+            },
+            "2": {
+              "placeholder": "MM"
+            },
+            "3": {
+              "placeholder": "YYYY"
+            }
           },
           "email": {
             "title": "Email",

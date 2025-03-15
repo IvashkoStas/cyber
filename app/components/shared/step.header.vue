@@ -25,11 +25,7 @@ function getActiveStep(step: number) {
       </div>
     </div>
     <div class="step-header__steps">
-      <span
-        v-for="s in stepCount"
-        :key="s"
-        :class="getActiveStep(s)"
-      />
+      <span v-for="s in stepCount" :key="s" :class="getActiveStep(s)" />
     </div>
   </div>
 </template>
@@ -42,7 +38,7 @@ function getActiveStep(step: number) {
   gap: 10px;
   margin: 0 -1.25rem;
   padding: 20px;
-  background-color: #1E1C1F;
+  background-color: #1e1c1f;
 
   &__left {
     max-width: 80%;
@@ -53,6 +49,7 @@ function getActiveStep(step: number) {
     font-weight: 600;
     line-height: 1.2;
     text-align: left;
+    color: #ffffff;
   }
 
   &__subtitle {
@@ -74,7 +71,7 @@ function getActiveStep(step: number) {
       width: 8px;
       height: 8px;
       border-radius: 3px;
-      background: #FFF3;
+      background: #fff3;
       transition: all 0.2s ease-out;
 
       &--active {

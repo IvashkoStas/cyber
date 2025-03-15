@@ -9,7 +9,7 @@ interface Props {
   email: string;
   disabledEmail: boolean;
   phoneData: Partial<VueTelInputValidateData>;
-  errors: [ErrorType, ErrorType],
+  errors: [ErrorType, ErrorType];
 }
 
 interface Emits {
@@ -30,7 +30,6 @@ const email = computed({
 });
 
 const showInfo = computed(() => disableCountries?.includes(props.phoneData?.country ?? ''));
-
 
 function onPhoneValidate(data: VueTelInputValidateData) {
   emits('update', data);
@@ -62,15 +61,9 @@ function getErrorText(index: number) {
       />
       <div>
         <h2 class="step-one__title">
-        {{$t('kyc.steps.1.form.phone') }}
-      </h2>
-        <UiPhoneInput
-          v-model="phone"
-          title="title"
-          :error="getErrorText(1)"
-          :placeholder="$t('kyc.steps.1.form.phone')"
-          @valid="onPhoneValidate"
-        />
+          {{ $t('kyc.steps.1.form.phone') }}
+        </h2>
+        <UiPhoneInput v-model="phone" title="title" :error="getErrorText(1)" :placeholder="$t('kyc.steps.1.form.phone')" @valid="onPhoneValidate" />
         <template v-if="showInfo">
           <h4 class="step-one__info-title">
             {{ $t('kyc.steps.1.info.title') }}
@@ -84,11 +77,11 @@ function getErrorText(index: number) {
 
 <style lang="scss">
 .kyc-step__one {
-  padding: 12px 0 20px;
+  padding: 20px 0;
 
   .step-one {
     &__title {
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       font-size: 14px;
       line-height: 1.2;
     }
@@ -96,7 +89,7 @@ function getErrorText(index: number) {
     &__fields {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
     &__info {
@@ -104,14 +97,14 @@ function getErrorText(index: number) {
         margin-top: 24px;
         font-size: 14px;
         line-height: 1.2;
-        color: #fff;
+        color: var(--input-color);
       }
 
       &-description {
         margin-top: 12px;
         font-size: 12px;
         line-height: 1.2;
-        color: rgb(255 255 255 / 30%);
+        color: var(--input-placeholder);
 
         p {
           margin-top: 8px;

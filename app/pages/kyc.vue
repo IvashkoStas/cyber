@@ -13,6 +13,8 @@ definePageMeta({
 
 type Steps = 1 | 2 | 3;
 
+const colorMode = useColorMode();
+
 const { user } = useUser();
 const { kyc, stepPassed: kycStepPassed, kycRequest, patchKyc, hasKycImage } = useKyc();
 const { theme, getMainButtonProps } = useShared();
@@ -265,12 +267,18 @@ const kycClasses = computed(() => [
     'kyc--pwa': !initData.length,
   },
 ]);
+
+colorMode.value = 'light';
+
+watch(colorMode, () => {
+  colorMode.value = 'light';
+});
 </script>
 
 <template>
   <div :class="kycClasses">
-    <SharedStepHeader :title="$t(`kyc.steps.${currentStep}.title`)" :current-step="currentStep" :step-count="3" />
-    <UiCustomBackButton v-if="showUiCustomBackButton" :key="currentStep" class="mt-[20px]" @click="onPrevStep" />
+    <UiCustomBackButton v-if="showUiCustomBackButton" :key="currentStep" class="mt-[20px] mb-[0px!important]" @click="onPrevStep" />
+    <h1 class="title">{{ $t(`kyc.steps.${currentStep}.title`) }}</h1>
     <div class="kyc-body">
       <KycFormStepOne
         v-show="currentStep === 1"
@@ -303,15 +311,20 @@ const kycClasses = computed(() => [
       />
     </div>
     <!-- <button :disabled="pending || !stepPassed[currentStep]" @click="onNextStep">{{$t('kyc.actions.next')}}</button> -->
-    <UiCustomMainButton
-      v-if="showUiCustomBackButton"
-      :key="themeKey"
-      :progress="pending"
-      style="margin-top: auto"
-      v-bind="getMainButtonProps(pending || !stepPassed[currentStep])"
-      :text="$t('kyc.actions.next')"
-      @click="onNextStep"
-    />
+    <div class="kyc__footer">
+      <div class="kyc__plates">
+        <div v-for="item in 3" :key="item" class="plate" :class="{ plate_active: item <= currentStep }"></div>
+      </div>
+      <UiCustomMainButton
+        v-if="showUiCustomBackButton"
+        :key="themeKey"
+        :progress="pending"
+        style="margin-top: auto"
+        v-bind="getMainButtonProps(pending || !stepPassed[currentStep])"
+        :text="$t('kyc.actions.next')"
+        @click="onNextStep"
+      />
+    </div>
   </div>
 </template>
 
@@ -321,14 +334,43 @@ const kycClasses = computed(() => [
   height: min-content;
   margin-top: 0 !important;
 
+  .title {
+    margin-top: 24px;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--primary-color);
+  }
+
   &--pwa {
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
   }
 
+  &__footer {
+    margin-top: auto;
+  }
+
+  &__plates {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+
+    .plate {
+      width: 100%;
+      border-radius: 4px;
+      height: 4px;
+      background-color: var(--plate-color);
+      transition: 0.2s ease-in-out;
+
+      &_active {
+        background-color: #09e5e5;
+      }
+    }
+  }
+
   &-body {
-    margin: 10px 0;
     max-width: 100vw;
   }
 }

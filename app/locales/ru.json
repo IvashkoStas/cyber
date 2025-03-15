@@ -100,7 +100,15 @@
           },
           "date_of_birth": {
             "title": "Дата рождения",
-            "placeholder": "ДД.MM.ГГГГ"
+            "1": {
+              "placeholder": "ДД"
+            },
+            "2": {
+              "placeholder": "ММ"
+            },
+            "3": {
+              "placeholder": "ГГГГ"
+            }
           },
           "email": {
             "title": "Email",
