@@ -58,48 +58,58 @@ const username = computed(() => {
 </script>
 
 <template>
-  <div class="user-main h-full px-4 pb-[120px] pt-[30px]">
-    <section class="user-main__avatar">
-      <img
-        class="avatar-image"
-        :src="userImage"
-        alt="avatar"
-      />
-    </section>
-    <h2 class="user-main__name">
-      {{ username }}
-    </h2>
-    <NuxtLink :to="referralLink" class="user-main__ref" @click="impactOccurred('light')">
-      <h3 class="ref-title">{{$t('user.RefClassic')}}</h3>
-      <div class="ref-bottom">
-        <div class="ref-bottom__price">
-          {{ formatPrice(bonusBalance) }}
-          <span class="symbol">USDT</span>
-        </div>
+  <div class="user-main h-full pb-[120px]">
+    <section class="user-main__avatar-wrapper">
+      <div class="user-main__avatar">
+        <img
+          class="avatar-image"
+          :src="userImage"
+          alt="avatar"
+        />
       </div>
-    </NuxtLink>
-    <ul class="user-main__settings">
-      <li v-for="[key, icon] in Object.entries(icons)" :key="key">
-        <NuxtLink
-          class="settings-item"
-          :to="links[key as keyof typeof links]"
-          :target="key === 'support' ? '_blank' : '_self'"
-          @click="impactOccurred('soft')"
-        >
-          <div class="item-icon__wrapper">
-            <img :src="`/icons/user/${icon}.svg`" />
+    </section>
+    <section class="px-4">
+      <h2 class="user-main__name">
+        {{ username }}
+      </h2>
+      <NuxtLink :to="referralLink" class="user-main__ref" @click="impactOccurred('light')">
+        <h3 class="ref-title">{{$t('user.RefClassic')}}</h3>
+        <div class="ref-bottom">
+          <div class="ref-bottom__price">
+            {{ formatPrice(bonusBalance) }}
+            <span class="symbol">USDT</span>
           </div>
-          <span class="item-text">{{$t(`user.settings.${key}`)}}</span>
-          <ArrowNextIcon class="item-chevron" />
-        </NuxtLink>
-      </li>
-    </ul>
+        </div>
+      </NuxtLink>
+      <ul class="user-main__settings">
+        <li v-for="[key, icon] in Object.entries(icons)" :key="key">
+          <NuxtLink
+            class="settings-item"
+            :to="links[key as keyof typeof links]"
+            :target="key === 'support' ? '_blank' : '_self'"
+            @click="impactOccurred('soft')"
+          >
+            <div class="item-icon__wrapper">
+              <img :src="`/icons/user/${icon}.svg`" />
+            </div>
+            <span class="item-text">{{$t(`user.settings.${key}`)}}</span>
+            <ArrowNextIcon class="item-chevron" />
+          </NuxtLink>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
 <style lang="scss">
 .user-main {
   height: min-content;
+
+  &__avatar-wrapper {
+    padding-top: 70px;
+    background-repeat: no-repeat;
+    background-image: url('/main.svg');
+  }
 
   &__avatar {
     width: 150px;
@@ -117,10 +127,9 @@ const username = computed(() => {
   }
 
   &__name {
-    margin-top: 15px;
-    font-size: 18px;
+    margin-top: 12px;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 1.2;
     text-align: center;
   }
 

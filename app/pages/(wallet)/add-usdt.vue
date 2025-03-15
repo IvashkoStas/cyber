@@ -40,7 +40,7 @@ async function onCopyLink(): Promise<void> {
 </script>
 
 <template>
-<div class="add-usdt h-full px-5 pb-[50px] pt-[30px]">
+<div class="add-usdt h-full px-4 pb-[50px] pt-[30px]">
   <UiCustomBackButton @click="$router.replace(AppRoutes.WALLET)" />
   <h2 class="add-usdt__title">{{ $t('addUsdt.title') }}</h2>
   <SharedSelectNetwork v-model="selectedNetworkIndex" is-usdt />

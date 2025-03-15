@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import { useWebApp } from 'vue-tg';
-import NavigateCardIcon from '~/assets/icons/navigate/card.svg';
-import NavigateProfileIcon from '~/assets/icons/navigate/profile.svg';
-import NavigateWalletIcon from '~/assets/icons/navigate/wallet.svg';
 import { AppRoutes, AppRoutesNames } from '~/constants/app.route';
 import { KycStatus } from '~~/types/kys.status';
 
@@ -10,6 +7,12 @@ const hapticFeedback = useVibrate();
 const { initData } = useWebApp();
 const route = useRoute();
 const { user } = useUser();
+
+const icons = {
+  wallet: (isActive: boolean) => isActive ? '/icons/navigate/wallet-active.svg' : '/icons/navigate/wallet.svg',
+  card: (isActive: boolean) => isActive ? '/icons/navigate/card-active.svg' : '/icons/navigate/card.svg',
+  setting: (isActive: boolean) => isActive ? '/icons/navigate/setting-active.svg' : '/icons/navigate/setting.svg',
+};
 
 const navigateClasses = computed(() => [
   'navigate',
@@ -20,7 +23,7 @@ const navigateClasses = computed(() => [
 
 const navData = [
   {
-    icon: NavigateWalletIcon,
+    icon: 'wallet',
     title: 'navigate.wallet',
     to: AppRoutes.WALLET,
     activeLinks: [
@@ -31,7 +34,7 @@ const navData = [
     ],
   },
   {
-    icon: NavigateCardIcon,
+    icon: 'card',
     title: 'navigate.card',
     to: AppRoutes.CARDS,
     activeLinks: [
@@ -43,7 +46,7 @@ const navData = [
     ],
   },
   {
-    icon: NavigateProfileIcon,
+    icon: 'setting',
     title: 'navigate.account',
     to: AppRoutes.USER,
     activeLinks: [
@@ -93,6 +96,13 @@ const showMenu = computed(
     ].includes(route.path as AppRoutes);
   },
 );
+
+function getIcon(icon: string, activeLinks: string[]) {
+  const isActive = !!activeLinks.find((p) => route.path?.includes(p));
+
+  return icons[icon as keyof typeof icons](isActive);
+}
+
 </script>
 
 <template>
@@ -100,7 +110,11 @@ const showMenu = computed(
     <ul class="navigate__list">
       <li v-for="({ icon, title, to, activeLinks }) in navData" :key="to" >
       <NuxtLink :to="to" :class="getNavigateItemClasses(activeLinks)" @click="hapticFeedback.impactOccurred('light')">
-        <Component :is="icon" class="navigate__item-icon" />
+        <img
+          :src="getIcon(icon, activeLinks)"
+          class="navigate__item-icon"
+          alt="icon"
+        />
         <span class="navigate__item-title">{{ $t(title) }}</span>
       </NuxtLink>
       </li>
@@ -140,7 +154,7 @@ const showMenu = computed(
 
   &__item {
     width: 80px;
-    height: 50px;
+    height: 43px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,8 +169,7 @@ const showMenu = computed(
     }
 
     &-icon {
-      width: 30px;
-      flex: 0 0 30px;
+      height: 18px;
     }
 
     &-title {

@@ -201,7 +201,7 @@ function changeFrom() {
 </script>
 
 <template>
-  <div class="wallet-output h-full px-5 pb-[50px] pt-[30px]">
+  <div class="wallet-output h-full px-4 pb-[50px] pt-[30px]">
     <CustomUiCustomBackButton @click="$router.replace(AppRoutes.WALLET)" />
     <div class="wallet-output__header">
       <h2 class="wallet-output__title">
