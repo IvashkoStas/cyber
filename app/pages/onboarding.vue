@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { AppRoutes } from '~/constants/app.route';
+import { useI18n } from 'vue-i18n';
+const { getMainButtonProps } = useShared();
 
 definePageMeta({
   layout: 'empty',
@@ -8,15 +10,26 @@ definePageMeta({
 
 const route = useRoute();
 
+const colorMode = useColorMode();
+
 const { updateUser, user } = useUser();
+const { t } = useI18n();
 
-const bg = computed(() => {
-  const step = Number(route.query.step) === 2 ? 2 : 1;
+const step = computed(() => {
+  const stepNumber = Number(route.query.step);
 
-  return `url('${`${AppRoutes.ONBOARDING}/${step}.webp`}')`;
+  return stepNumber >= 2 && stepNumber <= 3 ? stepNumber : 1;
 });
 
-const step = computed(() => Number(route.query.step) === 2 ? 'two' : 'one');
+const bg = computed(() => `url('${`${AppRoutes.ONBOARDING}/${step.value}_${colorMode.value}.png`}')`);
+
+const buttonText = computed(() => {
+  if (step.value === 3) {
+    return t('shared.actions.start');
+  } else {
+    return t('shared.actions.next');
+  }
+});
 
 onMounted(() => {
   if (user.value?.isOnboarded) {
@@ -25,10 +38,10 @@ onMounted(() => {
 });
 
 async function handleNextPage() {
-  if (Number(route.query.step) !== 2) {
+  if (step.value !== 3) {
     return await navigateTo({
       query: {
-        step: 2,
+        step: step.value + 1,
       },
     });
   }
@@ -41,33 +54,32 @@ async function handleNextPage() {
 }
 
 async function handlePrevPage() {
-  if (step.value !== 'two') {
+  if (step.value === 1) {
     return;
   }
 
   return await navigateTo({
     query: {
-      step: 1,
+      step: step.value - 1,
     },
   });
 }
 </script>
 
 <template>
-  <div class="onboarding relative flex px-5 pt-[50px]">
-    <UiCustomBackButton v-if="step === 'two'" @click="handlePrevPage" />
-    <div class="size-full pl-[39px] pr-[36px]">
+  <div class="onboarding relative flex px-[16px] pt-[40px]">
+    <UiCustomBackButton v-if="step !== 1" class="absolute top-[40px] z-10" @click="handlePrevPage" />
+    <div class="size-full">
       <div class="h-full onboarding-src bg-100% bg-no-repeat" />
     </div>
     <div class="onboarding-info">
       <p>
-        {{ $t(`onboarding.${step}.textStart`) }}
-        <span class="text-new-primary">{{ $t(`onboarding.${step}.textLink`) }}</span>
-        {{ $t(`onboarding.${step}.textEnd`) }}
+        {{ $t(`onboarding.${String(step)}.textStart`) }}
+        <span class="text-new-primary">{{ $t(`onboarding.${String(step)}.textLink`) }}</span>
+        {{ $t(`onboarding.${String(step)}.textEnd`) }}
       </p>
-      <UiButton class="onboarding-button hover:bg-new-primary/90 bg-new-primary" @click="handleNextPage">
-        {{ $t('shared.actions.next') }}
-      </UiButton>
+
+      <UiCustomMainButton v-bind="getMainButtonProps(false)" :progress="false" :text="buttonText" class="onboarding-button" @click="handleNextPage" />
     </div>
   </div>
 </template>
@@ -76,19 +88,7 @@ async function handlePrevPage() {
 .onboarding {
   height: 100dvh;
   position: relative;
-  background: linear-gradient(180deg, #000 13.39%, #3D3D3D 100%);
-
-  &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 79.5%) 62.4%, #000 85.4%);
-  }
+  background-color: var(--bg-body);
 }
 
 .onboarding-src {
@@ -101,22 +101,17 @@ async function handlePrevPage() {
   flex-direction: column;
   justify-content: center;
   position: absolute;
-  bottom: 39px;
-  left: 20px;
-  right: 20px;
+  bottom: 40px;
+  left: 16px;
+  right: 16px;
   z-index: 5;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 28px;
+  font-weight: 500;
   line-height: 1.2;
   text-align: left;
 }
 
 .onboarding-button {
   margin-top: 24px;
-  padding: 18px;
-  border-radius: 15px;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 24.38px;
 }
 </style>

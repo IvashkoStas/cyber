@@ -24,6 +24,7 @@
       "apply": "Apply",
       "in": "Deposit",
       "out": "Withdraw",
+      "start": "Start",
       "noTransactions": "No transactions"
     },
     "labels": {
@@ -141,7 +142,7 @@
   },
   "promoCode": {
     "title": "Promocode",
-    "placeholder":"Enter promocode"
+    "placeholder": "Enter promocode"
   },
   "drawers": {
     "kycInProgress": {
@@ -356,15 +357,20 @@
     "claim": "Claim"
   },
   "onboarding": {
-    "one": {
-      "textStart": "Open a virtual bank card with",
-      "textLink": "instant top-up",
-      "textEnd": "using cryptocurrencies"
+    "1": {
+      "textStart": "Get your",
+      "textLink": "virtual card",
+      "textEnd": "in seconds"
     },
-    "two": {
-      "textStart": "Pay",
-      "textLink": "worldwide",
-      "textEnd": "using Apple Pay or Google Pay"
+    "2": {
+      "textStart": "Use it for",
+      "textLink": "online shopping, subscriptions,",
+      "textEnd": "and more"
+    },
+    "3": {
+      "textStart": "Start managing your crypto effortlessly",
+      "textLink": "today",
+      "textEnd": ""
     }
   },
   "navigate": {
@@ -523,7 +529,7 @@
   "faqPage": {
     "title": "FAQ",
     "info": {
-      "1":{
+      "1": {
         "question": "What documents can be used to apply for a card?",
         "answer": "<p>Hello! Currently, the following documents are accepted for verification: passport or ID.</p><p>For your information, here is the list of countries with registration restrictions at the moment:</p><ul><li>BY Belarus</li><li>RU Russia</li><li>IR Iran</li><li>LY Libya</li><li>SY Syria</li><li>SO Somalia</li><li>VE Venezuela</li><li>YE Yemen</li><li>ZW Zimbabwe</li><li>CU Cuba</li><li>KP North Korea (DPRK)</li><li>CD Congo</li><li>CF Central African Republic</li><li>MM Myanmar (Burma)</li><li>HT Haiti</li><li>AR Argentina</li></ul>"
       },
