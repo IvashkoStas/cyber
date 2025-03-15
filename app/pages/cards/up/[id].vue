@@ -184,7 +184,7 @@ function onSelectFrom(value: From) {
 </script>
 
 <template>
-  <div class="px-5 pb-[120px] pt-[30px]">
+  <div class="px-4 pb-[120px] pt-[30px]">
     <UiCustomBackButton @click="$router.back" />
     <div class="up-card">
       <div class="up-card__places">

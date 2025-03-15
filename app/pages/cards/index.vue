@@ -32,12 +32,11 @@ const showBalanceLock = computed(() => (firstCard.value?.balance ?? 0) < 0);
   <UiLoader class="z-0" :show="!user" />
   <div
     v-if="![CardStatus.ACTIVE, CardStatus.LOCK].includes(firstCard?.status) || !firstCard"
-    class="cards h-full px-5 pb-[120px] pt-[30px]"
+    class="cards h-full px-4 pb-[120px] pt-[30px]"
   >
-    <CardEmpty :type="user?.partner?.design ?? firstCard?.partner?.design" />
     <p class="cards__process">{{ $t(`cards.process.${firstCard?.status ?? 'LOCK'}`) }}</p>
   </div>
-  <div v-else class="cards h-full px-5 pb-[120px] pt-[50px]">
+  <div v-else class="cards h-full px-4 pb-[120px] pt-[50px]">
     <BalanceTitle
       :balance="firstCard?.balance ?? 0"
       :title="$t('cards.balance')"
@@ -47,6 +46,7 @@ const showBalanceLock = computed(() => (firstCard.value?.balance ?? 0) < 0);
       :number="cardNumber"
       :expiration="firstCard?.expireAt"
       :card-network="firstCard.network"
+      :status="firstCard?.status"
       :type="user?.partner?.design ?? firstCard?.partner?.design"
     />
     <template v-if="firstCard.status === CardStatus.LOCK">
