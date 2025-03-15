@@ -17,7 +17,7 @@ module.exports = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
+          DEFAULT: 'var(--main)',
           foreground: 'hsl(var(--primary-foreground))',
         },
         'new-primary': {
@@ -64,15 +64,6 @@ module.exports = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
-      },
-      fontSize: {
-        lg: ['1.25rem', '1.75rem'], // 20px 28px
-        '2xl': ['2rem', '2.5rem'], // 32px 40px
-      },
-      fontFamily: {
-        body: ['EuclidGalactic', 'sans-serif'],
-        primary: ['Montserrat', 'sans-serif'],
-        secondary: ['Benzin', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {
