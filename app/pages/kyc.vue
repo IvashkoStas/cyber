@@ -267,12 +267,6 @@ const kycClasses = computed(() => [
     'kyc--pwa': !initData.length,
   },
 ]);
-
-colorMode.value = 'light';
-
-watch(colorMode, () => {
-  colorMode.value = 'light';
-});
 </script>
 
 <template>
