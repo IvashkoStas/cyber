@@ -127,7 +127,7 @@ const { balance /* user, updateUserDeviceTokens */ } = useUser();
       flex: 1;
 
       &:last-child {
-        flex-basis: 64px;
+        flex: 0 0 64px;
       }
     }
   }

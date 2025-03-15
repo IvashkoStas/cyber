@@ -39,7 +39,7 @@ const dropItemClasses = computed(() => [
   }
 
   &--selected {
-    color: var(--link-color);
+    color: var(--main);
   }
 }
 </style>

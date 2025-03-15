@@ -127,6 +127,7 @@ function triggerClickOutside(event: Event): void {
     }
 
     .chevron {
+      color: var(--main);
       transition: all 0.2s ease-out;
 
       &--rotate {

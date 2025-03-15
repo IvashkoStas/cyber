@@ -67,11 +67,11 @@ const cardData = computed(() => {
       fieldValue: visibleFields.cvv ? card.value.cvv : '***',
       key: 'cvv' as keyof CardShowData,
     },
-    {
-      placeholder: t('card.pin'),
-      fieldValue: visibleFields.pin ? card.value.pin : '****',
-      key: 'pin' as keyof CardShowData,
-    },
+    // {
+    //   placeholder: t('card.pin'),
+    //   fieldValue: visibleFields.pin ? card.value.pin : '****',
+    //   key: 'pin' as keyof CardShowData,
+    // },
   ];
 });
 
@@ -100,17 +100,18 @@ async function onCopyValue(value?: string) {
 </script>
 
 <template>
-<div class="card h-full px-5 pb-[120px] pt-[30px]">
+<div class="card h-full px-4 pb-[120px] pt-[30px]">
   <UiCustomBackButton @click="$router.replace(AppRoutes.CARDS)" />
   <CardPayment
     class="mt-12"
     :number="cardNumber"
     :expiration="card?.expireAt"
     :card-network="card?.network"
+    :status="card?.status"
     :type="user?.partner?.design ?? card?.partner?.design"
   />
   <ul class="card-info">
-    <li v-for="{ placeholder, fieldValue, key } in cardData" :key="key">
+    <li v-for="{ placeholder, fieldValue, key } in cardData" :key="key" :style="{ gridArea: key }">
       <button class="card-info__item" @click="onCopy(key)">
         <div class="placeholder">{{ placeholder }}</div>
         <div class="value">
@@ -128,16 +129,19 @@ async function onCopyValue(value?: string) {
   height: min-content;
 
   &-info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 30px;
+    display: grid;
+    grid-template-areas:
+      'encodedNumber encodedNumber'
+      'expireAt cvv'
+    ;
+    gap: 12px;
+    margin-top: 20px;
 
     &__item {
       width: 100%;
 
       .placeholder {
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.2;
         text-align: left;
       }
@@ -148,10 +152,9 @@ async function onCopyValue(value?: string) {
         align-items: center;
         padding: 10px 10px 10px 13px;
         margin-top: 7px;
-        border-radius: 15px;
-        background: rgb(255 255 255 / 5%);
-        font-size: 15px;
-        font-weight: 500;
+        border-radius: var(--radius);
+        background-color: var(--input-bg);
+        font-size: 14px;
         line-height: 1.2;
         letter-spacing: 3px;
       }

@@ -146,7 +146,7 @@ const stepThree = useVuelidate(rulesForStepThreeData, stepThreeData);
 </script>
 
 <template>
-  <div class="register px-5 pb-[50px]">
+  <div class="register px-4 pb-[50px]">
     <SharedStepHeader
       :title="$t(`registerScreen.steps.${currentStep}.title`)"
       :current-step="currentStep"

@@ -95,7 +95,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="px-5 pb-[120px] pt-[50px] flex flex-col items-center gap-4">
+  <div class="px-4 pb-[120px] pt-[50px] flex flex-col items-center gap-4">
     <img src="/icons/manifest/icon512.webp" class="icon" alt="icon" />
     <h1>{{ $t('authScreen.title') }}</h1>
     <LoginWidget

@@ -61,7 +61,7 @@ const iconClasses = computed(() => [
   border-radius: 16px;
   padding: 16px 20px;
   background-color: var(--bg-block);
-  font-size: 14px;
+  font-size: 11px;
   text-align: center;
 
   &--main {

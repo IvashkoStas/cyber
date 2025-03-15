@@ -31,9 +31,17 @@ const showBalanceLock = computed(() => (firstCard.value?.balance ?? 0) < 0);
 <div :key="firstCard?.id">
   <UiLoader class="z-0" :show="!user" />
   <div
-    v-if="![CardStatus.ACTIVE, CardStatus.LOCK].includes(firstCard?.status) || !firstCard"
+    v-if="!firstCard || ![CardStatus.ACTIVE, CardStatus.LOCK].includes(firstCard?.status) || !firstCard"
     class="cards h-full px-4 pb-[120px] pt-[30px]"
   >
+    <CardPayment
+      class="mt-4"
+      :number="cardNumber"
+      :expiration="firstCard?.expireAt"
+      :card-network="firstCard?.network"
+      :status="firstCard?.status"
+      :type="user?.partner?.design ?? firstCard?.partner?.design"
+    />
     <p class="cards__process">{{ $t(`cards.process.${firstCard?.status ?? 'LOCK'}`) }}</p>
   </div>
   <div v-else class="cards h-full px-4 pb-[120px] pt-[50px]">
@@ -42,18 +50,23 @@ const showBalanceLock = computed(() => (firstCard.value?.balance ?? 0) < 0);
       :title="$t('cards.balance')"
     />
     <CardPayment
-      class="mt-12"
+      class="mt-4"
       :number="cardNumber"
       :expiration="firstCard?.expireAt"
-      :card-network="firstCard.network"
+      :card-network="firstCard?.network"
       :status="firstCard?.status"
       :type="user?.partner?.design ?? firstCard?.partner?.design"
     />
-    <template v-if="firstCard.status === CardStatus.LOCK">
+    <template v-if="firstCard?.status === CardStatus.LOCK">
       <p v-if="showBalanceLock" class="cards__process">{{ $t(`cards.process.BALANCE_LOCK`) }}</p>
       <p v-else class="cards__process">{{ $t(`cards.process.${firstCard?.status}`) }}</p>
     </template>
     <section class="cards__actions">
+      <SharedLinkWithIcon
+        class="card-actions__link"
+        :text="$t('card.deposit')"
+        :to="`${AppRoutes.CARDS_UP}/${firstCard.id}`"
+      />
       <SharedLinkWithIcon
         class="card-actions__link"
         icon="card"
@@ -61,9 +74,10 @@ const showBalanceLock = computed(() => (firstCard.value?.balance ?? 0) < 0);
         :to="`${AppRoutes.CARDS}/${firstCard.id}`"
       />
       <SharedLinkWithIcon
+        :to="AppRoutes.REFERRAL_DEPTH"
+        icon="ref"
+        text=" "
         class="card-actions__link"
-        :text="$t('card.deposit')"
-        :to="`${AppRoutes.CARDS_UP}/${firstCard.id}`"
       />
     </section>
     <SharedTransactionGroup
@@ -99,7 +113,13 @@ const showBalanceLock = computed(() => (firstCard.value?.balance ?? 0) < 0);
     gap: 10px;
 
     .card-actions__link {
-      flex: 0 0 calc(50% - 5px);
+      max-width: 142px;
+      width: max-content;
+      flex: 1;
+
+      &:last-child {
+        flex: 0 0 64px;
+      }
     }
   }
 }

@@ -13,8 +13,6 @@ definePageMeta({
 
 type Steps = 1 | 2 | 3;
 
-const colorMode = useColorMode();
-
 const { user } = useUser();
 const { kyc, stepPassed: kycStepPassed, kycRequest, patchKyc, hasKycImage } = useKyc();
 const { theme, getMainButtonProps } = useShared();

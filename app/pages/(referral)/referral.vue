@@ -19,7 +19,7 @@ total.value = data?.total ?? 0;
 </script>
 
 <template>
-  <div class="referral h-full px-5 pb-[120px] pt-[30px]">
+  <div class="referral h-full px-4 pb-[120px] pt-[30px]">
     <UiCustomBackButton @click="$router.replace(AppRoutes.USER)" />
     <BalanceTitle
       :title="$t('RefClassic.balance')"

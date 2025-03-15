@@ -158,7 +158,7 @@ watch(
     border: none;
 
     &::placeholder {
-      color: var(--ibput-placeholder);
+      color: var(--input-placeholder);
       opacity: 0.5;
     }
   }

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import MasterCardIcon from '~/assets/icons/shared/_mastercard.svg';
 import VisaIcon from '~/assets/icons/shared/_visa.svg';
-// import AvocoinIcon from '~/assets/icons/shared/_avocoin.svg';
 import { fixCardExpiration } from '~/utils/fix.card.expiration';
 import { CardNetwork } from '~~/types/card.network';
 import { CardStatus } from '~~/types/card.status';
@@ -36,7 +35,7 @@ const segments = computed(() => props.number?.replace(/(.{4})/g, '$1 ')?.split('
 
 <template>
     <section class="payment-card">
-      <div v-if="status === CardStatus.ACTIVE" class="payment-card__status">
+      <div v-if="status !== CardStatus.ACTIVE" class="payment-card__status">
         <p class="payment-card__process">{{ $t(`cards.process.${status}`) }}</p>
       </div>
       <div class="payment-card__top">
@@ -67,6 +66,22 @@ const segments = computed(() => props.number?.replace(/(.{4})/g, '$1 ')?.split('
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
+
+  &__status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  &__process {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+  }
 
   &__top {
     display: flex;
@@ -76,22 +91,20 @@ const segments = computed(() => props.number?.replace(/(.{4})/g, '$1 ')?.split('
 
 
   &__number {
-    padding-top: 5px;
+    padding: 8px;
+    border-radius: 8px;
+    background: var(--accent-block);
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: 3px;
+    gap: 4px;
+    font-size: 14px;
+    width: max-content;
   }
 
   &__expiration {
     font-size: 10px;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: 3px;
-    color: rgb(255 255 255 / 60%);
+    font-size: 13px;
+    opacity: 0.7;
   }
 
   &__icon {

@@ -325,18 +325,15 @@ function onSelectFrom(value: From) {
     margin-top: 25px;
 
     .info-title {
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.2;
-      color: rgb(255 255 255 / 60%);
+      font-size: 12px;
+      opacity: 0.7;
     }
 
     .info-description {
-      margin-top: 7px;
-      font-size: 13px;
-      line-height: 1.2;
+      margin-top: 8px;
+      font-size: 12px;
       text-align: left;
-      color: rgb(255 255 255 / 50%);
+      opacity: 0.7;
     }
   }
 

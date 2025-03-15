@@ -57,7 +57,7 @@ await useAsyncData('init', async () => {
 });
 
 const colorMode = useColorMode();
-colorMode.preference = 'dark';
+colorMode.preference = 'system';
 
 onMounted(async () => {
   // window?.Telegram?.WebApp.requestFullscreen?.();
@@ -74,6 +74,7 @@ onMounted(async () => {
     document.documentElement.style.setProperty('--tg-viewport-stable-height', '100dvh');
   } else {
     colorMode.value = theme.colorScheme.value;
+    colorMode.preference = theme.colorScheme.value;
   }
 
   const style = window.getComputedStyle(document.body);

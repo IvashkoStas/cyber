@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 import { useWebApp } from 'vue-tg';
-import CardWorldIcon from '~/assets/icons/shared/_card-world.svg';
 import CryptoIcon from '~/assets/icons/shared/_crypto.svg';
 import { AppRoutes } from '~/constants/app.route';
 
@@ -9,11 +8,6 @@ import { AppRoutes } from '~/constants/app.route';
 definePageMeta({
   middleware: ['onboard', 'no-card', 'no-kyc'],
 });
-
-const icons = {
-  card: CardWorldIcon,
-  crypto: CryptoIcon,
-};
 
 const iconsNew = {
   new: CryptoIcon,
