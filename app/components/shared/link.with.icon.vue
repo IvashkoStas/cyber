@@ -24,17 +24,25 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { impactOccurred } = useVibrate();
 
+const linkWithIconClasses = computed(() => [
+  'link-with-icon',
+  {
+    'link-with-icon--main': props.direction === 'in',
+  },
+]);
+
+
 const iconClasses = computed(() => [
   'icon',
   {
-    'icon-rotate': props.direction === 'in',
+    'icon-rotate': props.direction === 'out',
     'icon--card': props.icon === 'card',
   },
 ]);
 </script>
 
 <template>
-  <NuxtLink :to="to" class="link-with-icon" @click="impactOccurred('light')">
+  <NuxtLink :to="to" :class="linkWithIconClasses" @click="impactOccurred('light')">
     <Component :is="icons[icon]" v-if="icon" :class="iconClasses" />
     {{text?.length ? text : $t(`shared.actions.${direction}`)}}
  </NuxtLink>
@@ -42,27 +50,31 @@ const iconClasses = computed(() => [
 
 <style lang="scss">
 .link-with-icon {
+  color: var(--primary);
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  border-radius: 15px;
-  padding: 10px 30px;
-  background: rgb(255 255 255 / 5%);
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.2;
+  border-radius: 16px;
+  padding: 16px 38px;
+  background-color: var(--bg-block);
+  font-size: 14px;
   text-align: center;
 
-  .icon {
-    height: 30px;
-    min-width: 30px;
+  &--main {
+    background-color: var(--main);
+    color: var(--main-color);
 
-    path {
-      color: #000;
+    .nuxt-icon--fill * {
+      fill: var(--main-color);
     }
+  }
+
+  .icon {
+    height: 24px;
+    min-width: 24px;
+
 
     &--card {
       &.nuxt-icon--fill * {

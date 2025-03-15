@@ -65,11 +65,9 @@ export default function () {
   const theme = useWebAppTheme();
 
   const mainButtonProps = computed(() => {
-    const isDark = theme.colorScheme.value === 'dark';
-
     return {
-      color: isDark ? '#fff' : '#100F10',
-      textColor: isDark ? '#100F10' : '#fff',
+      color: appConfig.theme.main,
+      textColor: appConfig.theme.mainColor,
     };
   });
 
@@ -79,8 +77,8 @@ export default function () {
     }
 
     return {
-      color: appConfig.theme.bgGray,
-      textColor: appConfig.theme.bgPrimary,
+      color: appConfig.theme.main,
+      textColor: appConfig.theme.mainColor,
       disabled: true,
     };
   }

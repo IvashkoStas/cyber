@@ -53,7 +53,6 @@ function changeAutoReplenishCard() {
         {{ $t('shared.autoReplenishment') }}
         <UiSwitch
           :key="key"
-          :model-value="autoReplenishCard"
           :disabled="!user?.cards?.length || switchLock"
           @update:model-value="changeAutoReplenishCard"
         />
@@ -63,18 +62,17 @@ function changeAutoReplenishCard() {
 
 <style lang="scss" scoped>
 .replenishment {
-  margin-top: 12px;
-  padding: 15px;
-  border-radius: 15px;
-  background-color: #1E1C1F;
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: var(--radius);
+  background-color: var(--bg-block);
 
   &-item {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 12px;
-    font-weight: 300;
+    font-size: 14px;
   }
 }
 </style>

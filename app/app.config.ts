@@ -1,7 +1,7 @@
 export default defineAppConfig({
   theme: {
-    bgPrimary: '#1c1c1d',
-    bgGray: '#828282',
+    main: '#72dada',
+    mainColor: '#102626',
     textPrimaryColor: '#fff',
   },
 });

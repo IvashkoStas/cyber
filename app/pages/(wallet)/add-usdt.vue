@@ -81,17 +81,19 @@ async function onCopyLink(): Promise<void> {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
     margin-top: 10px;
-    padding: 40px 60px;
-    border-radius: 15px;
-    background: rgb(255 255 255 / 5%);
+    padding: 28px 52px;
+    border-radius: var(--radius);
+    background: var(--bg-block);
 
     .qr-link {
       font-size: 14px;
       line-height: 1.2;
       text-align: center;
       word-break: break-all;
+      opacity: 0.8;
+      color: var(--primary-color);
     }
   }
 

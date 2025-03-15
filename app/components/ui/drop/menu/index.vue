@@ -97,7 +97,7 @@ function triggerClickOutside(event: Event): void {
     max-width: 80%;
     font-size: 14px;
     line-height: 1.2;
-    color: rgb(255 255 255 / 60%);
+    color: var(--primary-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -109,16 +109,16 @@ function triggerClickOutside(event: Event): void {
     align-items: center;
     justify-content: space-between;
     gap: 7px;
-    border-radius: 10px;
-    padding: 7px 13px;
+    border-radius: var(--radius);
+    padding: 12px 16px;
     position: relative;
     z-index: 2;
-    background: rgb(255 255 255 / 5%);
+    background: var(--bg-block);
 
 
-    &--open {
-      background-color: #29272a;
-    }
+    // &--open {
+    //   background-color: #29272a;
+    // }
 
     &--big {
       width: 100%;
@@ -143,9 +143,9 @@ function triggerClickOutside(event: Event): void {
     top: 0;
     right: 0;
     z-index: 1;
-    padding: 28px 12px 0;
-    border-radius: 15px;
-    background: rgb(255 255 255 / 5%);
+    padding: 44px 12px 0;
+    border-radius: var(--radius);
+    background: var(--bg-block);
     opacity: 0;
     overflow: hidden;
     visibility: hidden;
@@ -161,7 +161,7 @@ function triggerClickOutside(event: Event): void {
       visibility: visible;
       overflow: visible;
       transition: all 0.2s ease-in;
-      background-color: #1e1c1f;
+      background: var(--bg-block);
     }
   }
 }

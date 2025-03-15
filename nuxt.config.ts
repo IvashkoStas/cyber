@@ -13,6 +13,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   ssr: false,
 
+  colorMode: {
+    classSuffix: '',
+    preference: 'system',
+    fallback: 'light',
+  },
+
   app: {
     head: {
       title: 'CyberPay',
@@ -75,14 +81,8 @@ export default defineNuxtConfig({
   },
 
   buildId: randomUUID(),
-  modules: [
-    '@nuxt/eslint',
-    '@nuxtjs/tailwindcss',
-    '@nuxt/image',
-    'nuxt-vuefire',
-    // '@sentry/nuxt/module',
-    'nuxt-svgo',
-  ],
+  modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', '@nuxt/image', 'nuxt-vuefire', // '@sentry/nuxt/module',
+  'nuxt-svgo', '@nuxtjs/color-mode'],
 
   nitro: {
     prerender: {

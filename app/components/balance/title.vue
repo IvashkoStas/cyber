@@ -13,14 +13,41 @@ const countryBalance = computed(() => convertUsdtInCurrentCurrency(+props.balanc
 </script>
 
 <template>
-  <section class="flex flex-col items-center gap-[10px]">
-    <div class="font-primary text-[15px] font-light leading-[1.2] text-white/50">{{title}}</div>
-    <div class="font-secondary text-[40px] leading-[1.2] tracking-[1px]">
-      <span class="text-white/50">$ </span>
-      {{formatPrice(balance)}}
+  <section class="balance">
+    <div class="balance-title">
+      {{ title }}
     </div>
-    <div v-if="countryBalance" class="text-white/50 text-[15px]">
-      {{ countryBalance}}
+    <div class="balance-value">
+      <span>$</span>
+      {{ formatPrice(balance) }}
+    </div>
+    <div v-if="countryBalance" class="balance-country">
+      {{ countryBalance }}
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.balance {
+  $primary: var(--primary-color);
+
+  color: $primary;
+
+  &-title {
+    font-size: 14px;
+  }
+
+  &-value {
+    margin-top: 4px;
+    font-weight: 500;
+    font-size: 44px;
+  }
+
+  &-country {
+    margin-top: 16px;
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+}
+</style>

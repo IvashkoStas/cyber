@@ -109,6 +109,11 @@ const showMenu = computed(
 </template>
 
 <style lang="scss">
+.dark-mode .navigate {
+  background-color: var(--bg-block);
+  box-shadow: 0px 5px 27.6px 0px #00000040;
+}
+
 .navigate {
   position: fixed;
   left: 0;
@@ -118,7 +123,8 @@ const showMenu = computed(
   z-index: 5;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  background-color: hsl(var(--bg-black));
+  background-color: #fdfdfd;
+  box-shadow: 0px 5px 27.6px 0px #0000001A;
 
   &--sticky {
     position: sticky;

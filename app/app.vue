@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
-import { useWebApp } from 'vue-tg';
+import { useWebApp, useWebAppTheme } from 'vue-tg';
 import { AppRoutes, AppRoutesNames } from '~/constants/app.route';
 import { Keys } from '~/constants/keys';
 
@@ -16,6 +16,10 @@ const { checkHealth } = useShared();
 const loading = shallowRef(false);
 const token = useCookie(Keys.TOKEN);
 const xTgToken = useCookie<string>(Keys.X_TG_TOKEN);
+
+
+const theme = useWebAppTheme();
+
 
 await useAsyncData('init', async () => {
   try {
@@ -52,6 +56,10 @@ await useAsyncData('init', async () => {
   }
 });
 
+const colorMode = useColorMode();
+colorMode.preference = 'system';
+// colorMode.preference = 'light';
+
 onMounted(async () => {
   // window?.Telegram?.WebApp.requestFullscreen?.();
 
@@ -62,13 +70,16 @@ onMounted(async () => {
   });
 
   if (!initData.length) {
-    await registerServiceWorker();
+    // await registerServiceWorker();
     document.documentElement.style.setProperty('--tg-viewport-height', '100dvh');
     document.documentElement.style.setProperty('--tg-viewport-stable-height', '100dvh');
+  } else {
+    colorMode.preference = theme.colorScheme.value;
   }
 
+  const style = window.getComputedStyle(document.body);
   window?.Telegram?.WebApp.expand?.();
-  window?.Telegram?.WebApp?.setBackgroundColor?.('#100F10');
+  window?.Telegram?.WebApp?.setBackgroundColor?.(style.getPropertyValue('--bg-body'));
   // window?.Telegram?.WebApp.enableClosingConfirmation?.();
   window?.Telegram?.WebApp.lockOrientation?.();
 
@@ -121,7 +132,7 @@ function fullscreenChangedHandler() {
 }
 </script>
 <template>
-  <NuxtLoadingIndicator v-if="!initData.length" color="#4562ed" />
+  <NuxtLoadingIndicator v-if="!initData.length" color="#72dada" />
   <NuxtLayout>
     <UiLoader :show="!loading" />
     <NuxtPage v-if="loading" />

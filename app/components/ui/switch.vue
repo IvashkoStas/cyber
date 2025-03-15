@@ -28,8 +28,8 @@ defineEmits<Emits>();
 .tg-switch {
   position: relative;
   display: inline-block;
-  width: 52px;
-  height: 32px;
+  width: 48px;
+  height: 26px;
 
   &--disabled {
     opacity: 0.5;
@@ -51,10 +51,10 @@ defineEmits<Emits>();
     height: 0;
 
     &:checked + .tg-switch__slider {
-      background-color: #4EC68D;
+      background-color: var(--main);
 
       &:before {
-        transform: translateX(20px);
+        transform: translateX(22px);
       }
     }
 
@@ -78,8 +78,8 @@ defineEmits<Emits>();
     &:before {
       position: absolute;
       content: "";
-      height: 28px;
-      width: 28px;
+      height: 22px;
+      width: 22px;
       left: 2px;
       bottom: 2px;
       background-color: white;

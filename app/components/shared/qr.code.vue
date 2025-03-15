@@ -15,6 +15,11 @@ const icons = {
 
 const props = defineProps<Props>();
 const qrContainer = useTemplateRef<HTMLElement>('qr-container');
+const color = computed(() => {
+  const style = window.getComputedStyle(document.body);
+
+  return style.getPropertyValue('--primary-color');
+});
 
 const qrCode = computed(() => new QRCodeStyling({
     width: 300,
@@ -23,7 +28,7 @@ const qrCode = computed(() => new QRCodeStyling({
     data: props.link,
     image: `/icons/currency/${icons[props.network as keyof typeof icons]}.svg`,
     dotsOptions: {
-        color: '#fff',
+        color: color.value,
         type: 'rounded',
     },
     backgroundOptions: {
@@ -36,7 +41,7 @@ const qrCode = computed(() => new QRCodeStyling({
       margin: 8,
     },
     cornersSquareOptions: {
-      color: '#fff',
+      color: color.value,
       type: 'extra-rounded',
     },
 }));
@@ -53,7 +58,3 @@ onMounted(() => {
 <template>
   <div ref="qr-container" />
 </template>
-
-<style lang="scss">
-
-</style>

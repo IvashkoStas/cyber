@@ -1,28 +1,56 @@
-/* Montserrat */
+/* Onest */
 @font-face {
-  font-family: Montserrat;
+  font-family: Onest;
+  font-weight: 900;
+  src: url('~/assets/fonts/Onest/Onest-Black.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: Onest;
+  font-weight: 800;
+  src: url('~/assets/fonts/Onest/Onest-ExtraBold.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: Onest;
+  font-weight: 700;
+  src: url('~/assets/fonts/Onest/Onest-Bold.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: Onest;
+  font-weight: 600;
+  src: url('~/assets/fonts/Onest/Onest-SemiBold.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: Onest;
   font-weight: 500;
-  src: url('~/assets/fonts/Montserrat/Montserrat-Medium.woff2') format('woff2');
+  src: url('~/assets/fonts/Onest/Onest-Medium.ttf') format('woff2');
 }
 
-
 @font-face {
-  font-family: Montserrat;
+  font-family: Onest;
   font-weight: 400;
-  src: url('~/assets/fonts/Montserrat/Montserrat-Regular.woff2') format('woff2');
+  src: url('~/assets/fonts/Onest/Onest-Regular.ttf') format('woff2');
 }
 
 @font-face {
-  font-family: Montserrat;
+  font-family: Onest;
   font-weight: 300;
-  src: url('~/assets/fonts/Montserrat/Montserrat-Light.woff2') format('woff2');
+  src: url('~/assets/fonts/Onest/Onest-Light.ttf') format('woff2');
 }
 
-/* Benzin */
 @font-face {
-  font-family: Benzin;
-  font-weight: 300;
-  src: url('~/assets/fonts/Benzin/Benzin-Regular.woff2') format('woff2');
+  font-family: Onest;
+  font-weight: 200;
+  src: url('~/assets/fonts/Onest/Onest-ExtraLight.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: Onest;
+  font-weight: 100;
+  src: url('~/assets/fonts/Onest/Onest-Thin.ttf') format('woff2');
 }
 
 
