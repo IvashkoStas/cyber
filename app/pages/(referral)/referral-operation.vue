@@ -8,7 +8,7 @@ import { AppRoutes } from '~/constants/app.route';
     <h2 class="wallet-operation__title">
       {{ $t('walletOperation.title') }}
     </h2>
-    <SharedTransactionGroup class="mt-5" :show-link="false" entity="wallet" load-more />
+    <SharedTransactionGroup class="mt-5" :show-link="false" entity="ref" load-more />
   </div>
 </template>
 

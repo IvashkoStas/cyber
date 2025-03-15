@@ -15,33 +15,44 @@ async function onCopyLink(): Promise<void> {
     console.error(error);
   }
 }
+
+const link = computed(() => (props.url ?? refLink.value)?.replace('https://', ''));
 </script>
 
 <template>
   <section class="ref-card">
-    <h3 class="ref-card__title" v-html="$t('cards.ref')" />
+    <h3 class="ref-card__title">
+      {{ $t('cards.ref') }}
+    </h3>
+    <p class="ref-card__description">
+      {{ $t('cards.refDesc') }}
+    </p>
     <button class="ref-card__link" @click="onCopyLink">
-      <span class="ref-card__link-text">{{ url ?? refLink }}</span>
+      <span class="ref-card__link-text">{{ link }}</span>
       <CopyIcon />
     </button>
   </section>
 </template>
 
 <style lang="scss">
-@use '~/assets/css/mixins' as mixins;
-
 .ref-card {
-  margin-top: 20px;
-  padding: 15px;
-
-  @include mixins.gradientCard;
+  width: 100%;
+  margin: 24px 0;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--accent-block);
 
   &__title {
-    line-height: 1.4;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
 
-    .primary {
-      color: hsl(var(--primary));
-    }
+  &__description {
+    margin-top: 8px;
+    font-size: 13px;
+    opacity: 0.7;
+    color: var(--primary-color);
   }
 
   &__link {
@@ -49,13 +60,13 @@ async function onCopyLink(): Promise<void> {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
+    gap: 8px;
     position: relative;
     z-index: 1;
-    border-radius: 15px;
-    margin-top: 25px;
-    padding: 12px 10px;
-    background: rgb(255 255 255 / 5%);
+    border-radius: var(--radius);
+    margin-top: 24px;
+    padding: 12px 8px;
+    background: var(--bg-body);
 
     &-text {
       max-width: calc(100% - 35px);

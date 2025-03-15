@@ -16,6 +16,7 @@ export enum AppRoutes {
   REFERRAL = '/referral',
   REFERRAL_DEPTH = '/referral-depth',
   REFERRAL_OUTPUT = '/referral-output',
+  REFERRAL_OPERATION = '/referral-operation',
   REGISTER = '/register',
   REQUEST_CARD = '/request-card',
   USER = '/user',

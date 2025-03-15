@@ -52,12 +52,18 @@ const { balance /* user, updateUserDeviceTokens */ } = useUser();
         alt="ctg-money-logo"
       />
     </div>
-      <div class="px-5">
+      <div class="px-4">
         <section class="wallet-controls">
         <SharedLinkWithIcon :to="AppRoutes.ADD_USDT" class="wallet-controls__link" />
         <SharedLinkWithIcon
           :to="AppRoutes.WALLET_OUTPUT"
           direction="out"
+          class="wallet-controls__link"
+        />
+        <SharedLinkWithIcon
+          :to="AppRoutes.REFERRAL_DEPTH"
+          icon="ref"
+          text=" "
           class="wallet-controls__link"
         />
       </section>
@@ -116,7 +122,13 @@ const { balance /* user, updateUserDeviceTokens */ } = useUser();
     gap: 8px;
 
     &__link {
-      flex: 0 0 calc(50% - 5px);
+      max-width: 142px;
+      width: max-content;
+      flex: 1;
+
+      &:last-child {
+        flex-basis: 64px;
+      }
     }
   }
 }

@@ -49,9 +49,9 @@ function toggleCollapse() {
 .collapse {
   width: 100%;
   visibility: visible;
-  padding: 15px;
-  border-radius: 20px;
-  background: #1E1C1F;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--bg-block);
 
   &-header {
     display: flex;
@@ -61,10 +61,8 @@ function toggleCollapse() {
 
     &__title {
       flex: 0 0 85%;
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.2;
-      color: rgba($color: #fff, $alpha: 0.8);
+      font-size: 14px;
+      color: var(--primary-color);
     }
 
     &__arrow {
@@ -82,12 +80,12 @@ function toggleCollapse() {
     grid-template-rows: 0fr;
     transition: all 0.3s ease-out;
     overflow: hidden;
-    font-size: 12px;
-    line-height: 1.2;
-    color: rgba($color: #fff, $alpha: 0.5);
+    font-size: 14px;
+    opacity: 0.7;
+    color: var(--primary-color);
 
     &--collapse {
-      padding-top: 15px;
+      padding-top: 12px;
       grid-template-rows: 1fr;
       transition: all 0.3s ease-in;
     }

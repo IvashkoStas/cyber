@@ -67,7 +67,7 @@ async function handlePrevPage() {
 </script>
 
 <template>
-  <div class="onboarding relative flex px-[16px] pt-[40px]">
+  <div class="onboarding relative flex px-4 pt-[40px]">
     <UiCustomBackButton v-if="step !== 1" class="absolute top-[40px] z-10" @click="handlePrevPage" />
     <div class="size-full">
       <div class="h-full onboarding-src bg-100% bg-no-repeat" />

@@ -1,12 +1,6 @@
 <script lang="ts" setup>
-// import { getMessaging, getToken } from 'firebase/messaging';
 import { useWebApp } from 'vue-tg';
-import ChevronRightIcon from '~/assets/icons/chevrons/chevron-right.svg';
-import FaqIcon from '~/assets/icons/user/faq.svg';
-import LangIcon from '~/assets/icons/user/lang.svg';
-import LogoutIcon from '~/assets/icons/user/logout.svg';
-import ShieldIcon from '~/assets/icons/user/shield.svg';
-import SupportIcon from '~/assets/icons/user/support.svg';
+import ArrowNextIcon from '~/assets/icons/arrows/arrow-next.svg';
 import { AppRoutes } from '~/constants/app.route';
 import { SUPPORT_LINK } from '~/constants/links';
 import { formatPrice } from '~/utils/format.price';
@@ -15,18 +9,13 @@ definePageMeta({
   middleware: 'onboard',
 });
 
-const { initData } = useWebApp();
 const USER_PHOTO = '/images/user.png';
-const CRYPTO_PAY_BOT = 'cryptopaybot.com';
-
-const colorMode = useColorMode();
 
 const icons = {
-  setting: LangIcon,
-  shield: ShieldIcon,
-  support: SupportIcon,
-  faq: FaqIcon,
-  ...(!initData.length ? { logout: LogoutIcon } : {}),
+  setting: 'lang',
+  shield: 'shield',
+  support: 'support',
+  faq: 'faq',
 };
 
 const links = computed(() => ({
@@ -34,7 +23,6 @@ const links = computed(() => ({
   shield: AppRoutes.LOCK,
   support: SUPPORT_LINK,
   faq: AppRoutes.FAQ,
-  logout: AppRoutes.LOGOUT,
 }));
 
 const { user } = useUser();
@@ -67,27 +55,10 @@ const username = computed(() => {
 
   return `${user.value?.lastName ?? ''} ${user.value?.firstName ?? ''}`;
 });
-
-/* async function requestPermission() {
-  const permission = await window?.Notification?.requestPermission();
-    console.table({ permission });
-    if (permission === 'granted') {
-      const messaging = getMessaging();
-      const messageToken = await getToken(messaging, {
-        vapidKey,
-      });
-      await updateUserDeviceTokens(messageToken);
-  }
-} */
-
-
-function onChangeTheme() {
-  colorMode.value = colorMode.value === 'light' ? 'dark' : 'light';
-}
 </script>
 
 <template>
-  <div class="user-main h-full px-5 pb-[120px] pt-[30px]">
+  <div class="user-main h-full px-4 pb-[120px] pt-[30px]">
     <section class="user-main__avatar">
       <img
         class="avatar-image"
@@ -102,40 +73,31 @@ function onChangeTheme() {
       <h3 class="ref-title">{{$t('user.RefClassic')}}</h3>
       <div class="ref-bottom">
         <div class="ref-bottom__price">
-          <span class="symbol">$</span>
           {{ formatPrice(bonusBalance) }}
-        </div>
-        <div class="ref-bottom__link">
-          <ChevronRightIcon />
+          <span class="symbol">USDT</span>
         </div>
       </div>
     </NuxtLink>
     <ul class="user-main__settings">
-      <!-- <li>
-        <UiButton action theme @click="requestPermission">notify user</UiButton>
-      </li> -->
-      <button @click="onChangeTheme">change theme: {{ colorMode.value }}</button>
       <li v-for="[key, icon] in Object.entries(icons)" :key="key">
-          <NuxtLink
-            class="settings-item"
-            :to="links[key as keyof typeof links]"
-            :target="key === 'support' ? '_blank' : '_self'"
-            @click="impactOccurred('soft')"
-          >
-            <div class="item-icon__wrapper">
-              <Component :is="icon" />
-            </div>
-            <span class="item-text">{{$t(`user.settings.${key}`)}}</span>
-            <ChevronRightIcon class="item-chevron" />
-          </NuxtLink>
-        </li>
+        <NuxtLink
+          class="settings-item"
+          :to="links[key as keyof typeof links]"
+          :target="key === 'support' ? '_blank' : '_self'"
+          @click="impactOccurred('soft')"
+        >
+          <div class="item-icon__wrapper">
+            <img :src="`/icons/user/${icon}.svg`" />
+          </div>
+          <span class="item-text">{{$t(`user.settings.${key}`)}}</span>
+          <ArrowNextIcon class="item-chevron" />
+        </NuxtLink>
+      </li>
     </ul>
   </div>
 </template>
 
 <style lang="scss">
-@use '~/assets/css/mixins' as mixins;
-
 .user-main {
   height: min-content;
 
@@ -164,55 +126,31 @@ function onChangeTheme() {
 
   &__ref {
     display: block;
-    margin-top: 30px;
-    padding: 15px;
-
-    @include mixins.gradientCard;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: var(--radius);
+    background-color: var(--accent-block);
 
     .ref {
       &-title {
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 1.2;
-        color: rgb(255 255 255 / 80%);
+        font-size: 13px;
+        color: var(--primary-color);
       }
 
       &-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-        margin-top: 42px;
+        margin-top: 4px;
 
         &__price {
           display: flex;
-          align-items: center;
-          gap: 3px;
-          font-size: 40px;
+          align-items: baseline;
+          gap: 8px;
+          font-size: 34px;
           font-weight: 500;
-          line-height: 1.2;
-          letter-spacing: 1px;
-          text-align: left;
 
           .symbol {
-            font-size: 32px;
-            font-weight: 400;
-            line-height: 1.3;
-            color: rgb(255 255 255 / 30%);
+            font-size: 18px;
+            font-weight: 200;
           }
-        }
-
-        &__link {
-          width: 30px;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-left: auto;
-          position: relative;
-          z-index: 2;
-          border-radius: 50%;
-          background-color: rgb(17 16 18);
         }
       }
     }
@@ -221,38 +159,52 @@ function onChangeTheme() {
   &__settings {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 15px;
-    background: rgb(255 255 255 / 5%);
+    gap: 8px;
+    margin-top: 16px;
 
     .settings-item {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 12px;
+      padding: 12px 16px;
+      overflow: hidden;
+      border-radius: var(--radius);
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--bg-block);
+        opacity: 0.7;
+      }
 
       .item {
         &-icon__wrapper {
-          width: 40px;
-          height: 40px;
+          position: relative;
+          z-index: 1;
+          width: 30px;
+          height: 30px;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          background-color: rgb(17 16 18);
+          background-color: var(--bg-block);
         }
 
         &-text {
-          font-size: 15px;
-          font-weight: 500;
-          line-height: 1.2;
-          color: rgb(255 255 255 / 80%);
+          position: relative;
+          z-index: 1;
+          font-size: 14px;
+          color: var(--primary-color);
         }
 
         &-chevron {
+          position: relative;
+          z-index: 1;
           display: block;
           margin-left: auto;
+          color: var(--main);
         }
       }
     }

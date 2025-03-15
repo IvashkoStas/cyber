@@ -8,7 +8,7 @@ definePageMeta({
 
 
 <template>
-  <div class="faq h-full px-5 pb-[120px] pt-[30px]">
+  <div class="faq h-full px-4 pb-[120px] pt-[30px]">
     <UiCustomBackButton @click="$router.replace(AppRoutes.USER)" />
     <h2 class="faq-title">{{$t('faqPage.title')}}</h2>
     <div class="faq-body">

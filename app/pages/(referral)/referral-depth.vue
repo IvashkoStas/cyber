@@ -5,74 +5,28 @@ definePageMeta({
   middleware: 'onboard',
 });
 
-enum Tabs {
-  STAT = 'stat',
-  HISTORY = 'history',
-}
 
 const { referral, getReferral, bonusBalance } = useReferral();
 
-const selectedTab = shallowRef<Tabs>(Tabs.STAT);
 
 await getReferral();
 
-function getTabClasses(tab: Tabs) {
-  return [
-    'tab',
-    {
-      'tab--active': selectedTab.value === tab,
-    },
-  ];
-}
-
-function onChangeTab(tab: Tabs) {
-  selectedTab.value = tab;
-}
 </script>
 
 <template>
-  <div class="referral-depth h-full px-5 pb-[120px] pt-[30px]">
+  <div class="referral-depth h-full px-4 pb-[120px] pt-[30px]">
     <UiCustomBackButton @click="$router.replace(AppRoutes.USER)" />
     <BalanceTitle
       :title="$t('RefClassic.balance')"
       :balance="bonusBalance"
     />
-    <SharedLinkWithIcon
-      class="referral-depth__link"
-      direction="out" :to="AppRoutes.REFERRAL_OUTPUT"
-    />
     <CardRef :url="referral?.url" />
-    <div v-if="referral" class="referral-depth__info">
-      <ul class="referral-depth__tabs">
-        <li
-          v-for="([key, tab]) in Object.entries(Tabs)"
-          :key="key"
-          :class="getTabClasses(tab)"
-          @click="onChangeTab(tab)"
-        >
-          {{ $t(`referralDepth.tabs.${tab}`) }}
-        </li>
-      </ul>
-      <div class="referral-depth__body">
-        <SharedTransactionGroup
-          v-show="selectedTab === Tabs.HISTORY"
-          :key="Tabs.HISTORY"
-          entity="ref"
-          load-more
-          :link-title="$t('wallet.operations')"
-        />
-        <div v-show="selectedTab !== Tabs.HISTORY" :key="Tabs.STAT" class="mt-[30px]">
-          <ReferralStructure :lines="referral?.lines" />
-          <div class="referral-lines__info">
-            <ReferralLineCard
-              v-for="line in referral.lines"
-              :key="line.depth"
-              :line="line"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <SharedTransactionGroup
+      entity="ref"
+      :to="AppRoutes.REFERRAL_OPERATION"
+      show-link
+      :link-title="$t('referralDepth.history')"
+    />
   </div>
 </template>
 

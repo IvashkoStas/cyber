@@ -259,7 +259,7 @@ const { initData } = useWebApp();
 
 const kycClasses = computed(() => [
   'kyc',
-  'px-5',
+  'px-4',
   'pb-[50px]',
   {
     'kyc--pwa': !initData.length,

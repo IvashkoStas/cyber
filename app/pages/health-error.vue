@@ -12,7 +12,7 @@ function goToSupport() {
 </script>
 
 <template>
-  <div class="health-error h-full px-5 pb-[120px] pt-[30px]">
+  <div class="health-error h-full px-4 pb-[120px] pt-[30px]">
     <div class="health-error__info">
       <h2 class="health-error__info-title">{{ $t('healthCheck.title') }}</h2>
       <p class="health-error__info-description">{{ $t('healthCheck.description') }}</p>

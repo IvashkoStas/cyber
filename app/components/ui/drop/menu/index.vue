@@ -140,20 +140,16 @@ function triggerClickOutside(event: Event): void {
     min-width: 100%;
     width: min-content;
     position: absolute;
-    top: 0;
+    top: calc(100% + 10px);
     right: 0;
     z-index: 1;
-    padding: 44px 12px 0;
+    padding: 12px 16px;
     border-radius: var(--radius);
     background: var(--bg-block);
     opacity: 0;
     overflow: hidden;
     visibility: hidden;
     transition: all 0.2s ease-out;
-
-    &--big {
-      padding-top: 40px;
-    }
 
     &--open {
       opacity: 1;

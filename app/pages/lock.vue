@@ -1,5 +1,5 @@
 <template>
-  <div class="lock h-full px-5 pb-[120px] pt-[30px]">
+  <div class="lock h-full px-4 pb-[120px] pt-[30px]">
     <UiCustomBackButton @click="$router.back" />
     <p class="lock-title">{{$t('lock.title')}}</p>
   </div>
@@ -7,12 +7,11 @@
 
 <style lang="scss">
 .lock-title {
-  padding: 10px 21px;
-  border-radius: 15px;
-  background: rgb(255 255 255 / 5%);
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.2;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  background-color: var(--bg-block);
+  color: var(--primary-color);
+  font-size: 14px;
   text-align: center;
 }
 </style>

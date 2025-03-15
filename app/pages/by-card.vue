@@ -149,7 +149,7 @@ function pastePromo(event: ClipboardEvent) {
 </script>
 
 <template>
-  <div class="buy-card__page px-5 pb-[20px] pt-[30px]">
+  <div class="buy-card__page px-4 pb-[20px] pt-[30px]">
     <UiCustomBackButton :visible="isVisible" @click="goWallet" />
     <!-- <SharedInfo
       v-if="showSharedInfoForKyc"

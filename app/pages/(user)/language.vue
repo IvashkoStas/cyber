@@ -80,7 +80,7 @@ function getInitialLanguage() {
 </script>
 
 <template>
-  <div class="language h-full px-5 pb-[120px] pt-[30px]">
+  <div class="language h-full px-4 pb-[120px] pt-[30px]">
     <UiCustomBackButton @click="$router.replace(AppRoutes.USER)" />
     <h2 class="language-title">
       {{ $t('languagePage.title') }}

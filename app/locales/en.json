@@ -327,7 +327,8 @@
       "CANCELED": "Card is canceled",
       "BALANCE_LOCK": "Card blocked due to negative balance. Top up your balance"
     },
-    "ref": "<span class='text-primary'>Invite</span> friends<br />and <span class='text-primary'>earn</span> real USDT"
+    "ref": "Invite friends and earn real USDT",
+    "refDesc": "Invite your friends and earn real USDT with every successful referral. Simply share your unique link, and once they sign up and complete their first transaction, you’ll receive a reward directly to your wallet. The more friends you invite, the more you earn. Start sharing now and enjoy unlimited rewards."
   },
   "card": {
     "activating": "Activation in progress",
@@ -581,6 +582,7 @@
     "description": "{percent}% from transactions and ${dollar} from card sales",
     "card": "Card",
     "referral": "Referrals",
-    "turnover": "Turnover"
+    "turnover": "Turnover",
+    "history": "History"
   }
 }

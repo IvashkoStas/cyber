@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 
 const requestCardPageClasses = computed(() => [
   'request-card__page',
-  'px-5',
+  'px-4',
   'pt-[30px]',
   'pb-[50px]',
   {

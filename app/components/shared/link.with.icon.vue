@@ -2,6 +2,7 @@
 import type { RouteLocationAsPathGeneric, RouteLocationAsRelativeGeneric } from 'vue-router';
 import ArrowCircleIcon from '~/assets/icons/arrows/arrow-circle.svg';
 import CardIcon from '~/assets/icons/navigate/card.svg';
+import UserAddIcon from '~/assets/icons/user/user-add.svg';
 
 interface Props {
   to: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric | undefined;
@@ -13,6 +14,7 @@ interface Props {
 const icons = {
   arrow: ArrowCircleIcon,
   card: CardIcon,
+  ref: UserAddIcon,
 };
 
 
@@ -27,7 +29,7 @@ const { impactOccurred } = useVibrate();
 const linkWithIconClasses = computed(() => [
   'link-with-icon',
   {
-    'link-with-icon--main': props.direction === 'in',
+    'link-with-icon--main': props.direction === 'in' && props.icon === 'arrow',
   },
 ]);
 
@@ -57,7 +59,7 @@ const iconClasses = computed(() => [
   align-items: center;
   gap: 5px;
   border-radius: 16px;
-  padding: 16px 38px;
+  padding: 16px 20px;
   background-color: var(--bg-block);
   font-size: 14px;
   text-align: center;
