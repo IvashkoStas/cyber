@@ -109,7 +109,6 @@ const stepThreeData = reactive({
   documentExpireDate: decodeDate(kyc.value?.documentExpireDate),
 });
 
-
 const rulesForStepThreeData = {
   documentType: {
     required,
@@ -153,7 +152,7 @@ function formatDate(date: string): string {
   const [day, month, year] = date.split('.');
 
   return new Date(`${year}-${month}-${day}`).toISOString();
-};
+}
 
 function decodeDate(_date?: Nullable<string>): string {
   if (!_date) {
@@ -166,11 +165,11 @@ function decodeDate(_date?: Nullable<string>): string {
   const year = date.getFullYear();
 
   return `${day}.${month}.${year}`;
-};
+}
 
 function bodyCreator() {
   const body: Partial<KycDto> = {};
-  switch(currentStep.value) {
+  switch (currentStep.value) {
     case 1:
       body.email = stepOne.value.email.$model;
       body.documentCountry = phoneData.value?.country ?? '';
@@ -215,8 +214,7 @@ async function onNextStep(): Promise<void> {
       impactOccurred('light');
       router.replace({ query: { step: currentStep.value } });
     }
-
-  } catch(error: FetchCTX) {
+  } catch (error: FetchCTX) {
     if (error?.data?.message?.length) {
       showAlert(error?.data?.message);
     }
@@ -236,13 +234,9 @@ const stepPassed = reactive<Record<Steps, ComputedRef<boolean>>>({
 const showUiCustomBackButton = shallowRef(false);
 
 onBeforeMount(() => {
-  const isByCard = [
-    KycStatus.ADOPT_PASS,
-    KycStatus.IN_AUDIT,
-    KycStatus.PREMODERATION,
-    KycStatus.READY_FOR_SEND,
-  ]?.includes(kyc.value?.status as KycStatus);
-
+  const isByCard = [KycStatus.ADOPT_PASS, KycStatus.IN_AUDIT, KycStatus.PREMODERATION, KycStatus.READY_FOR_SEND]?.includes(
+    kyc.value?.status as KycStatus,
+  );
 
   if (isByCard) {
     navigateTo(AppRoutes.BY_CARD);
@@ -275,27 +269,15 @@ const kycClasses = computed(() => [
 
 <template>
   <div :class="kycClasses">
-    <SharedStepHeader
-      :title="$t(`kyc.steps.${currentStep}.title`)"
-      :current-step="currentStep"
-      :step-count="3"
-    />
-    <UiCustomBackButton
-      v-if="showUiCustomBackButton"
-      :key="currentStep"
-      class="mt-[20px]"
-      @click="onPrevStep"
-    />
+    <SharedStepHeader :title="$t(`kyc.steps.${currentStep}.title`)" :current-step="currentStep" :step-count="3" />
+    <UiCustomBackButton v-if="showUiCustomBackButton" :key="currentStep" class="mt-[20px]" @click="onPrevStep" />
     <div class="kyc-body">
       <KycFormStepOne
         v-show="currentStep === 1"
         v-model:email="stepOne.email.$model"
         :phone-data="phoneData"
-        :disabled-email="!initData.length && !!user?.email.length"
-        :errors="[
-          stepOne.email.$errors[0]?.$message as string,
-          phoneError,
-        ]"
+        :disabled-email="!initData.length && !!user?.email?.length"
+        :errors="[stepOne.email.$errors[0]?.$message as string, phoneError]"
         @update="updatePhoneData"
       />
       <KycFormStepTwo
@@ -325,7 +307,7 @@ const kycClasses = computed(() => [
       v-if="showUiCustomBackButton"
       :key="themeKey"
       :progress="pending"
-      style="margin-top: auto;"
+      style="margin-top: auto"
       v-bind="getMainButtonProps(pending || !stepPassed[currentStep])"
       :text="$t('kyc.actions.next')"
       @click="onNextStep"

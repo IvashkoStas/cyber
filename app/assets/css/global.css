@@ -8,28 +8,30 @@
   --main-color: #001919;
   --radius: 16px;
 
-
-
   --bg-primary: #1c1c1d;
   --link-color: #4562ed;
   --section-header: var(--tg-theme-section-header-text-color);
+
+  --text-primary: #08c4c4;
 }
 
 .dark body {
   --bg-body: #001919;
   --bg-block: #102626;
   --primary-color: #ffffff;
+
+  --text-primary: #09e5e5;
 }
 
 #root {
   height: var(--tg-viewport-height);
   overflow: auto;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
 html {
-  background-color: #100F10;
+  background-color: #100f10;
 }
 
 body {
